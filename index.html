@@ -50,7 +50,6 @@ main { position: relative; z-index: 1; }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; max-width: none; }
 @media (min-width: 900px) { .top .wrap { padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
-.brand .logo { width: 40px; height: 40px; border-radius: 50%; background: var(--sun); color: var(--coral-ink); display: grid; place-items: center; font: 700 16px/1 var(--f-display); box-shadow: 0 4px 14px rgba(0, 40, 100, .3); }
 .brand b { display: block; font: 700 clamp(17px, 4.4vw, 24px)/1.1 var(--f-display); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
 .brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .top .btn { flex: none; white-space: nowrap; }
@@ -75,6 +74,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* Slides */
 .slide { min-height: 100svh; display: flex; align-items: center; scroll-snap-align: start; padding-block: 100px 90px; position: relative; }
 .slide > .wrap { display: grid; gap: 36px; }
+.soon { max-width: 560px; padding: 26px 28px; border-radius: 24px; background: var(--glass); border: 1px dashed var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.soon p { margin: 0; font-weight: 700; color: var(--ink-soft); }
 .eyebrow { margin: 0; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
 h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 40, 100, .35); }
 h1 { font-size: clamp(42px, 7.4vw, 94px); line-height: 1.02; letter-spacing: -.02em; max-width: 13ch; }
@@ -277,7 +278,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="logo">0+</span><span><b>Ноль Плюс</b><small>детский бассейн · Екатеринбург</small></span></a>
+    <a class="brand" href="#top"><span><b>Ноль Плюс</b><small>детский бассейн · Екатеринбург</small></span></a>
     <span class="top-phone">+7 (343) 20 100 38</span>
     <a class="btn btn-coral btn-sm" href="#contact">Заказать звонок</a>
   </div>
@@ -383,6 +384,28 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     <div class="rope" aria-hidden="true"></div>
   </section>
 
+  <section class="slide" id="prices" data-label="Цены">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Стоимость занятий</p>
+        <h2 class="reveal" style="--d:1">Цены</h2>
+      </div>
+      <div class="soon reveal" style="--d:2"><p>Раздел готовится. Скоро здесь появятся цены на занятия.</p></div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="offers" data-label="Акции">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Акции и новости</p>
+        <h2 class="reveal" style="--d:1">Акции</h2>
+      </div>
+      <div class="soon reveal" style="--d:2"><p>Раздел готовится. Скоро здесь появятся акции и специальные предложения.</p></div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
   <section class="slide" id="photos" data-label="Фото">
     <div class="wrap">
       <div class="head">
@@ -446,10 +469,10 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     <div class="wrap contact">
       <div class="head">
         <p class="eyebrow reveal">Контакты</p>
-        <h2 class="reveal" style="--d:1">Ждём вас <span class="hl">на Ломоносова, 38</span></h2>
+        <h2 class="reveal" style="--d:1">Ждём вас <span class="hl">в Екатеринбурге, на Ломоносова, 38</span></h2>
         <dl class="cinfo reveal" style="--d:2">
           <div><dt>Телефоны</dt><dd>+7 (343) 20 100 38<span>+7 (953) 05 100 38, также в MAX</span></dd></div>
-          <div><dt>Адрес</dt><dd>Екатеринбург, ул. Ломоносова, 38<span>Пересечение с ул. Победы. Рядом парковка.</span></dd></div>
+          <div><dt>Адрес</dt><dd>г. Екатеринбург, ул. Ломоносова, 38<span>Пересечение с ул. Победы. Рядом парковка.</span></dd></div>
           <div><dt>Режим работы</dt><dd>Ежедневно, 08:00–22:00<span>По предварительной записи</span></dd></div>
           <div><dt>Почта</dt><dd>spresent@ya.ru</dd></div>
         </dl>
@@ -1148,15 +1171,19 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     'Привет! Я проведу вас по сайту',
     'Здесь плавают с первых дней жизни',
     'После плавания можно в сауну, она входит в занятие',
+    'Цены скоро появятся здесь',
+    'Следите за акциями!',
     'Загляните в наш фотоальбом!',
     'Не забудьте справки и шапочку!',
-    'Ждём вас на Ломоносова, 38'
+    'Ждём вас в Екатеринбурге, на Ломоносова, 38'
   ];
   // Where the guide rests on each slide: fractions of the viewport (wide, narrow)
   const SPOTS = [
     [[.62, .86], [.8, .2]],
     [[.82, .2], [.82, .16]],
     [[.82, .26], [.82, .16]],
+    [[.7, .3], [.82, .16]],
+    [[.7, .3], [.82, .16]],
     [[.82, .2], [.82, .14]],
     [[.8, .3], [.82, .16]],
     [[.48, .2], [.82, .16]]
