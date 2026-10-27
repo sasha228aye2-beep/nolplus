@@ -1,0 +1,1373 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Детский бассейн «Ноль Плюс» в Екатеринбурге: плавание для детей с первых дней жизни до 9 лет.">
+<title>Ноль Плюс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap"></noscript>
+<style>html { background: #12a3df; }</style>
+<style>
+/* Layout: full-height slides over one bright, evenly lit pool of shimmering water; lane ropes divide the pages;
+   a guide fish travels with the reader */
+:root {
+  --pool: #12a3df;
+  --pool-deep: #0a6fc2;
+  --ink: #ffffff;
+  --ink-soft: #e6f8ff;
+  --sun: #ffd23f;
+  --coral: #ff5a3c;
+  --coral-ink: #3a0e05;
+  --glass: rgba(0, 70, 150, .38);
+  --line: rgba(255, 255, 255, .28);
+  --f-display: "Comfortaa", "Nunito", system-ui, sans-serif;
+  --f-body: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--pool-deep); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--pool); }
+#water, #sea { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; pointer-events: none; }
+#water { background: linear-gradient(180deg, var(--pool), var(--pool-deep)); }
+#buddy { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 3; display: block; pointer-events: none; }
+main { position: relative; z-index: 1; }
+.wrap {
+  width: 100%; max-width: 1180px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 900px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(110px, env(safe-area-inset-right, 0px)); } }
+
+/* Header */
+.top { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 5; background: linear-gradient(to bottom, rgba(0, 60, 140, .62), rgba(0, 60, 140, 0)); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; max-width: none; }
+@media (min-width: 900px) { .top .wrap { padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.brand .logo { width: 40px; height: 40px; border-radius: 50%; background: var(--sun); color: var(--coral-ink); display: grid; place-items: center; font: 700 16px/1 var(--f-display); box-shadow: 0 4px 14px rgba(0, 40, 100, .3); }
+.brand b { font: 700 18px/1.1 var(--f-display); }
+.brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+.top-phone { font-weight: 800; color: var(--ink); white-space: nowrap; }
+@media (max-width: 560px) { .top-phone { display: none; } .brand small { display: none; } }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; padding: 14px 24px;
+  font: 800 16px/1 var(--f-body); text-decoration: none; cursor: pointer; border: 2px solid transparent;
+  transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background-color .2s;
+}
+.btn:hover { transform: translateY(-3px) scale(1.03); }
+.btn:active { transform: scale(.97); }
+.btn-coral { background: var(--coral); color: var(--coral-ink); box-shadow: 0 8px 24px rgba(255, 90, 60, .4); }
+.btn-coral:hover { background: #ff7a60; }
+.btn-ghost { color: var(--ink); border-color: var(--line); background: rgba(255, 255, 255, .12); }
+.btn-sm { padding: 10px 16px; font-size: 14px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+
+/* Slides */
+.slide { min-height: 100svh; display: flex; align-items: center; scroll-snap-align: start; padding-block: 100px 90px; position: relative; }
+.slide > .wrap { display: grid; gap: 36px; }
+.eyebrow { margin: 0; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 40, 100, .35); }
+h1 { font-size: clamp(42px, 7.4vw, 94px); line-height: 1.02; letter-spacing: -.02em; max-width: 13ch; }
+h2 { font-size: clamp(34px, 5vw, 60px); line-height: 1.08; letter-spacing: -.01em; max-width: 18ch; }
+h3 { font-size: 22px; line-height: 1.2; }
+p { margin: 0; }
+.lead { font-size: clamp(18px, 1.7vw, 21px); font-weight: 700; color: var(--ink-soft); max-width: 50ch; text-shadow: 0 1px 2px rgba(0, 40, 100, .45), 0 2px 14px rgba(0, 40, 100, .45); }
+.head { display: grid; gap: 16px; justify-items: start; }
+.hl { color: var(--sun); }
+
+/* Floating words in the hero title */
+.float-word { display: inline-block; animation: bob 3.2s ease-in-out infinite; animation-delay: calc(var(--i) * -0.45s); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-7px) rotate(-1deg); } }
+
+/* Entrance: visible at rest; replays when a slide comes into view */
+@keyframes rise { 0% { transform: translateY(34px) scale(.97); opacity: .2; } 70% { transform: translateY(-4px) scale(1.005); opacity: 1; } 100% { transform: none; opacity: 1; } }
+.slide.in .reveal { animation: rise 1s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--d, 0) * 100ms); }
+@media (prefers-reduced-motion: reduce) { .slide.in .reveal, .float-word, .rope, .marquee-track, .buoy { animation: none !important; } }
+
+/* Hero */
+.hero-grid { grid-template-columns: minmax(0, 1fr); align-items: center; }
+.hero-text { display: grid; gap: 30px; min-width: 0; justify-items: start; }
+@media (min-width: 1000px) { .hero-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); } }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 720px; margin: 0; }
+@media (min-width: 720px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.fact { padding: 14px 16px; border-radius: 18px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.fact dt { font: 700 26px/1.1 var(--f-display); color: var(--sun); font-variant-numeric: tabular-nums; }
+.fact dd { margin: 4px 0 0; font-size: 14px; font-weight: 700; color: var(--ink-soft); line-height: 1.35; }
+.buoy-wrap { margin: 0; justify-self: end; width: min(100%, 360px); }
+@media (max-width: 699px) { .buoy-wrap { display: none; } }
+.buoy {
+  position: relative; aspect-ratio: 1; max-width: 100%; border-radius: 50%; padding: 22px;
+  background: repeating-conic-gradient(from 15deg, #ff5a4a 0 30deg, #ffffff 30deg 60deg);
+  box-shadow: 0 24px 60px rgba(0, 40, 100, .4);
+  animation: buoy 7s ease-in-out infinite;
+}
+.buoy img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+.buoy::after { content: ""; position: absolute; inset: 22px; border-radius: 50%; box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .55); background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .35), transparent 38%); }
+.buoy-tag { position: absolute; z-index: 1; right: -6px; bottom: 26px; transform: rotate(-6deg); background: var(--sun); color: var(--coral-ink); font: 800 14px/1.2 var(--f-body); padding: 8px 14px; border-radius: 999px; box-shadow: 0 8px 20px rgba(0, 40, 100, .3); }
+@keyframes buoy { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+
+/* Lane rope between slides */
+.rope {
+  position: absolute; left: 0; right: 0; bottom: 18px; height: 14px; z-index: 0;
+  background: repeating-linear-gradient(90deg, #ff5a4a 0 28px, #ffffff 28px 56px, #2a6df4 56px 84px, #ffffff 84px 112px);
+  -webkit-mask: radial-gradient(circle, #000 6px, transparent 7px) 0 0 / 28px 14px;
+  mask: radial-gradient(circle, #000 6px, transparent 7px) 0 0 / 28px 14px;
+  opacity: .9; animation: drift 14s linear infinite;
+}
+@keyframes drift { to { background-position: 112px 0; } }
+
+/* About */
+.about { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 960px) { .about { grid-template-columns: 1fr 1fr; } }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ticks li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 14px 16px; border-radius: 18px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-weight: 700; }
+.ticks li::before { content: ""; width: 26px; height: 26px; border-radius: 50%; background: var(--sun) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233a0e05' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 16px no-repeat; }
+.quote { font: 700 clamp(22px, 2.4vw, 28px)/1.3 var(--f-display); max-width: 26ch; text-shadow: 0 2px 16px rgba(0, 40, 100, .4); }
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 10px; max-width: 100%; }
+.marquee-track { display: flex; gap: 32px; width: max-content; animation: marquee 26s linear infinite; font: 700 15px/1 var(--f-display); color: var(--ink-soft); white-space: nowrap; }
+.marquee-track span::after { content: "○"; margin-left: 32px; color: var(--sun); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Cards */
+.cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { position: relative; display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 24px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: transform .35s cubic-bezier(.3, 1.4, .5, 1), border-color .2s; min-width: 0; }
+.card:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, .55); }
+.card p { color: var(--ink-soft); font-weight: 700; }
+.card .ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(255, 210, 63, .2); color: var(--sun); }
+.card .ico svg { width: 28px; height: 28px; }
+.card .tag { font: 500 12px/1.3 var(--f-mono); color: var(--sun); }
+
+/* Photo album */
+.album-tools { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { border: 2px solid var(--line); background: rgba(255, 255, 255, .12); color: var(--ink); border-radius: 999px; padding: 10px 18px; font: 800 15px/1 var(--f-body); cursor: pointer; transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background-color .2s; }
+.tab:hover { transform: translateY(-2px); }
+.tab[aria-selected="true"] { background: var(--sun); color: var(--coral-ink); border-color: var(--sun); }
+.album-more { color: var(--ink-soft); font-weight: 700; font-size: 15px; }
+.album-more:hover { color: var(--ink); }
+.album-grid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.album-grid .ph { aspect-ratio: 1; }
+.album-grid .ph:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+@media (min-width: 820px) {
+  .album-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); height: clamp(340px, 54vh, 540px); }
+  .album-grid .ph, .album-grid .ph:first-child { aspect-ratio: auto; }
+  .album-grid .ph:first-child { grid-column: auto; grid-row: 1 / span 2; }
+}
+.ph { position: relative; display: block; padding: 0; margin: 0; border: 4px solid rgba(255, 255, 255, .92); border-radius: 28px; overflow: hidden; cursor: zoom-in; background: var(--pool-deep); box-shadow: 0 18px 40px rgba(0, 40, 100, .35); min-width: 0; min-height: 0; max-width: 100%; }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+.ph:hover img { transform: scale(1.06); }
+.ph .cap { position: absolute; left: 12px; bottom: 12px; max-width: calc(100% - 24px); text-align: left; background: rgba(0, 60, 140, .72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--ink); font: 700 13px/1.3 var(--f-body); padding: 7px 12px; border-radius: 999px; }
+
+/* Docs */
+.docs { display: grid; gap: 12px; }
+details { border-radius: 20px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); overflow: hidden; }
+summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font: 700 19px/1.3 var(--f-display); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .14); font: 700 20px/1 var(--f-body); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); }
+details[open] summary::after { transform: rotate(135deg); background: var(--sun); color: var(--coral-ink); }
+details .body { padding: 0 22px 20px; color: var(--ink-soft); font-weight: 700; }
+details ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
+
+/* Contact */
+.contact { display: grid; gap: 36px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 960px) { .contact { grid-template-columns: 1fr 1fr; } }
+.cinfo { display: grid; gap: 14px; margin: 0; }
+.cinfo div { display: grid; gap: 2px; }
+.cinfo dt { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
+.cinfo dd { margin: 0; font-size: 19px; font-weight: 700; }
+.cinfo dd span { display: block; font-size: 15px; font-weight: 700; color: var(--ink-soft); }
+form { display: grid; gap: 14px; padding: 26px; border-radius: 26px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); min-width: 0; }
+form h3 { font-size: 26px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
+input, textarea { width: 100%; font: 600 16px/1.4 var(--f-body); color: var(--ink); background: rgba(255, 255, 255, .14); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+textarea { min-height: 84px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
+.status { font-weight: 700; color: var(--sun); min-height: 1.4em; }
+.foot { font-size: 13px; color: var(--ink-soft); font-weight: 700; }
+
+/* Rail */
+.rail { position: fixed; z-index: 4; right: calc(env(safe-area-inset-right, 0px) + 26px); top: 50%; transform: translateY(-50%); display: none; }
+@media (min-width: 900px) { .rail { display: block; } }
+.rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; justify-items: end; }
+.rail button { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 2px 0; color: var(--ink-soft); font: 700 13px/1 var(--f-body); cursor: pointer; text-shadow: 0 1px 8px rgba(0, 40, 100, .5); }
+.rail button span { opacity: 0; transform: translateX(6px); transition: opacity .2s, transform .2s; }
+.rail button::after { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-soft); transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background-color .2s; }
+.rail button:hover span, .rail button:focus-visible span, .rail button[aria-current="true"] span { opacity: 1; transform: none; }
+.rail button[aria-current="true"] { color: var(--ink); }
+.rail button[aria-current="true"]::after { background: var(--sun); border-color: var(--sun); transform: scale(1.35); }
+
+/* Guide fish speech bubble */
+.talk { position: fixed; z-index: 4; left: 0; top: 0; max-width: min(240px, 60vw); padding: 10px 14px; border-radius: 18px 18px 18px 6px; background: #ffffff; color: #0a4f9a; font: 700 14px/1.35 var(--f-body); box-shadow: 0 10px 30px rgba(0, 40, 100, .3); pointer-events: none; opacity: 0; transition: opacity .3s; }
+.talk.show { opacity: 1; }
+
+/* Photo viewer */
+.lightbox {
+  position: fixed; inset: 0; z-index: 30; display: grid; place-items: center;
+  padding: max(70px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(84px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgba(0, 30, 70, .88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+@media (min-width: 641px) { .lightbox { padding-inline: 90px; padding-bottom: 40px; } }
+.lightbox figure { margin: 0; display: grid; gap: 12px; justify-items: center; max-width: min(1100px, 100%); }
+.lightbox img { max-width: 100%; max-height: calc(100svh - 190px); border-radius: 22px; border: 4px solid #ffffff; object-fit: contain; display: block; }
+.lightbox figcaption { font: 700 17px/1.4 var(--f-body); text-align: center; color: var(--ink); }
+.lb-btn { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .16); color: #ffffff; font: 800 26px/1 var(--f-body); cursor: pointer; display: grid; place-items: center; }
+.lb-btn:hover { background: var(--sun); color: var(--coral-ink); }
+.lb-close { top: calc(env(safe-area-inset-top, 0px) + 14px); right: calc(env(safe-area-inset-right, 0px) + 16px); }
+.lb-prev { left: calc(env(safe-area-inset-left, 0px) + 18px); top: 50%; transform: translateY(-50%); }
+.lb-next { right: calc(env(safe-area-inset-right, 0px) + 18px); top: 50%; transform: translateY(-50%); }
+.lb-count { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 28px); left: calc(env(safe-area-inset-left, 0px) + 20px); font: 500 13px/1 var(--f-mono); color: var(--ink-soft); }
+@media (max-width: 640px) {
+  .lb-prev, .lb-next { top: auto; transform: none; bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); }
+  .lb-prev { left: calc(50% - 64px); } .lb-next { right: calc(50% - 64px); }
+}
+</style>
+
+</head>
+<body>
+<canvas id="water" aria-hidden="true"></canvas>
+<canvas id="sea" aria-hidden="true"></canvas>
+<canvas id="buddy" aria-hidden="true"></canvas>
+<div class="talk" id="talk" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="logo">0+</span><span><b>Ноль Плюс</b><small>детский бассейн · Екатеринбург</small></span></a>
+    <span class="top-phone">+7 (343) 20 100 38</span>
+    <a class="btn btn-coral btn-sm" href="#contact">Заказать звонок</a>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Разделы"><ul id="dots"></ul></nav>
+
+<div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
+  <span class="lb-count" id="lbCount"></span>
+  <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Закрыть">×</button>
+  <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Предыдущее фото">‹</button>
+  <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Следующее фото">›</button>
+</div>
+
+<main>
+  <section class="slide" id="top" data-label="Начало">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow reveal">Детский бассейн «Ноль Плюс»</p>
+        <h1 class="reveal" style="--d:1"><span class="float-word" style="--i:0">Растите</span> <span class="float-word" style="--i:1">и</span> <span class="float-word hl" style="--i:2">крепчайте</span> <span class="float-word" style="--i:3">вместе</span> <span class="float-word" style="--i:4">с</span> <span class="float-word" style="--i:5">нами!</span></h1>
+        <p class="lead reveal" style="--d:2">Развивающее плавание для детей с первых дней жизни и до 9 лет. Индивидуальные занятия с опытными инструкторами, чтобы ребёнок чувствовал себя в воде спокойно и без страха.</p>
+        <div class="hero-actions reveal" style="--d:3">
+          <a class="btn btn-coral" href="#contact">Записаться на первое плавание</a>
+          <a class="btn btn-ghost" href="#docs">Какие нужны справки</a>
+        </div>
+        <dl class="facts reveal" style="--d:4">
+          <div class="fact"><dt>+33 °C</dt><dd>тёплая вода, держится автоматически</dd></div>
+          <div class="fact"><dt>30 мин</dt><dd>полный водообмен в чаше</dd></div>
+          <div class="fact"><dt>08–22</dt><dd>без перерывов и выходных</dd></div>
+          <div class="fact"><dt>0–9 лет</dt><dd>от грудничков до школьников</dd></div>
+        </dl>
+      </div>
+      <figure class="buoy-wrap reveal" style="--d:3">
+        <div class="buoy">
+          <img src="photos/pool-1.jpg" alt="Малышка в розовой шапочке смеётся в бассейне, инструктор поддерживает её" width="1000" height="706" fetchpriority="high">
+          <span class="buoy-tag">Это наш бассейн</span>
+        </div>
+      </figure>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="about" data-label="О нас">
+    <div class="wrap">
+      <div class="about">
+        <div class="head">
+          <p class="eyebrow reveal">О нас</p>
+          <h2 class="reveal" style="--d:1">Доступное здоровье <span class="hl">с первых дней жизни</span></h2>
+          <p class="quote reveal" style="--d:2">Наша цель: привить каждому ребёнку навык поведения в воде, от грудничка до 9 лет, без страха.</p>
+        </div>
+        <ul class="ticks">
+          <li class="reveal" style="--d:2">Домашняя обстановка и доброжелательные администраторы, которые всегда помогут.</li>
+          <li class="reveal" style="--d:3">Квалифицированные инструкторы, мастера своего дела, находят подход к каждому маленькому пловцу.</li>
+          <li class="reveal" style="--d:4">Занимаемся с детьми разных возрастов, степеней развития и особенностей здоровья.</li>
+          <li class="reveal" style="--d:5">Плавание укрепляет иммунитет, нервную систему, мышцы и костную ткань.</li>
+          <li class="reveal" style="--d:6">Позаботились обо всём: от места для колясок до помощи на выходе из центра.</li>
+        </ul>
+      </div>
+      <div class="marquee reveal" style="--d:6" aria-hidden="true">
+        <div class="marquee-track">
+          <span>плаваем с первых дней жизни</span><span>вода +33 °C</span><span>сауна после занятия</span><span>игровая комната</span><span>парковка рядом</span><span>без выходных</span>
+          <span>плаваем с первых дней жизни</span><span>вода +33 °C</span><span>сауна после занятия</span><span>игровая комната</span><span>парковка рядом</span><span>без выходных</span>
+        </div>
+      </div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="services" data-label="Услуги">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Каталог услуг</p>
+        <h2 class="reveal" style="--d:1">Плавание, тепло <span class="hl">и игры</span></h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal" style="--d:2">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><path d="M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><circle cx="14" cy="6" r="2.2"/><path d="M6 12l4-4 3 2.5 3 1.5"/></svg></div>
+          <span class="tag">индивидуально · 0–9 лет</span>
+          <h3>Бассейн</h3>
+          <p>Индивидуальные занятия для грудничков и дошкольников. Инструктор всё время рядом и чутко следит за ребёнком.</p>
+        </article>
+        <article class="card reveal" style="--d:3">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3c-1 1.5 1 2.5 0 4M12 3c-1 1.5 1 2.5 0 4M16 3c-1 1.5 1 2.5 0 4"/><rect x="3" y="10" width="18" height="10" rx="2"/><path d="M3 15h18"/></svg></div>
+          <span class="tag">входит в стоимость занятия</span>
+          <h3>Сауна</h3>
+          <p>Сразу после плавания можно погреться в сауне. Отдельно платить не нужно.</p>
+        </article>
+        <article class="card reveal" style="--d:4">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="7" height="7" rx="1.5"/><rect x="7" y="5" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="15.5" r="3.5"/></svg></div>
+          <span class="tag">до и после занятия</span>
+          <h3>Игровая комната</h3>
+          <p>Место, где можно подождать своей очереди, переодеться без спешки и поиграть после бассейна.</p>
+        </article>
+        <article class="card reveal" style="--d:5">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/><path d="M9.5 14.5l2 2 3.5-4"/></svg></div>
+          <span class="tag">СанПиН 2.1.2.1188-03</span>
+          <h3>Чистая вода</h3>
+          <p>Многоступенчатая фильтрация и дезинфекция. Вода в чаше полностью обновляется за 30 минут.</p>
+        </article>
+      </div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="photos" data-label="Фото">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Фотоальбом</p>
+        <h2 class="reveal" style="--d:1">Загляните <span class="hl">к нам в гости</span></h2>
+        <p class="lead reveal" style="--d:2">Тёплая вода с игрушками, сауна и игровая комната. Нажмите на фото, чтобы рассмотреть его поближе.</p>
+      </div>
+      <div class="album-tools reveal" style="--d:3">
+        <div class="tabs" role="tablist" aria-label="Разделы фотоальбома">
+          <button class="tab" type="button" role="tab" id="tab-pool" aria-controls="g-pool" aria-selected="true">Бассейн</button>
+          <button class="tab" type="button" role="tab" id="tab-hall" aria-controls="g-hall" aria-selected="false" tabindex="-1">Интерьер</button>
+          <button class="tab" type="button" role="tab" id="tab-sauna" aria-controls="g-sauna" aria-selected="false" tabindex="-1">Сауна</button>
+          <button class="tab" type="button" role="tab" id="tab-play" aria-controls="g-play" aria-selected="false" tabindex="-1">Игровая комната</button>
+        </div>
+        <a class="album-more" href="https://xn----btblucamikv2j0a.xn--p1ai/photoalbum/" target="_blank" rel="noopener">Все фото в альбоме →</a>
+      </div>
+      <div class="reveal" style="--d:4">
+        <div class="album-grid" id="g-pool" role="tabpanel" aria-labelledby="tab-pool">
+          <button class="ph" type="button"><img src="photos/pool-3.jpg" alt="Малышка в шапочке брызгается и смеётся на занятии" loading="lazy"><span class="cap">Брызги и смех на занятии</span></button>
+          <button class="ph" type="button"><img src="photos/pool-1.jpg" alt="Малышка в розовой шапочке плавает с инструктором" loading="lazy"><span class="cap">Плаваем с инструктором</span></button>
+          <button class="ph" type="button"><img src="photos/pool-2.jpg" alt="Мальчик в очках плавает с гантелями-поплавками" loading="lazy"><span class="cap">С гантелями-поплавками</span></button>
+        </div>
+        <div class="album-grid" id="g-hall" role="tabpanel" aria-labelledby="tab-hall" hidden>
+          <button class="ph" type="button"><img src="photos/hall-1.jpg" alt="Девочка в бассейне на фоне стены с логотипом «Ноль Плюс» и рыбками" loading="lazy"><span class="cap">Стены с подводным миром</span></button>
+          <button class="ph" type="button"><img src="photos/hall-2.jpg" alt="Чаша бассейна с голубой мозаикой и нарисованным скатом" loading="lazy"><span class="cap">Чаша бассейна</span></button>
+          <button class="ph" type="button"><img src="photos/hall-3.jpg" alt="Нарисованная весёлая акула на стене бассейна" loading="lazy"><span class="cap">Акула встречает гостей</span></button>
+        </div>
+        <div class="album-grid" id="g-sauna" role="tabpanel" aria-labelledby="tab-sauna" hidden>
+          <button class="ph" type="button"><img src="photos/sauna-2.jpg" alt="Девочка в купальнике отдыхает в деревянной сауне" loading="lazy"><span class="cap">Отдыхаем после плавания</span></button>
+          <button class="ph" type="button"><img src="photos/sauna-1.jpg" alt="Малыш в жёлтом полотенце в сауне" loading="lazy"><span class="cap">Тёплая сауна</span></button>
+          <button class="ph" type="button"><img src="photos/sauna-3.jpg" alt="Малышка сидит на полке сауны в полотенце" loading="lazy"><span class="cap">Греемся в полотенце</span></button>
+        </div>
+        <div class="album-grid" id="g-play" role="tabpanel" aria-labelledby="tab-play" hidden>
+          <button class="ph" type="button"><img src="photos/play-1.jpg" alt="Малыш ползёт по ковру среди пирамидок и игрушек" loading="lazy"><span class="cap">Пирамидки и игрушки</span></button>
+          <button class="ph" type="button"><img src="photos/play-2.jpg" alt="Мама с малышкой на руках в игровой комнате" loading="lazy"><span class="cap">Мама с малышкой</span></button>
+          <button class="ph" type="button"><img src="photos/play-3.jpg" alt="Малышка обнимает разноцветный мяч" loading="lazy"><span class="cap">Любимый мяч</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="docs" data-label="Справки">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow reveal">Перед первым занятием</p>
+        <h2 class="reveal" style="--d:1">Справки и <span class="hl">что взять с собой</span></h2>
+        <p class="lead reveal" style="--d:2">Справки нужны, потому что мы заботимся о каждом ребёнке. Безопасность важнее всего, когда речь о малышах.</p>
+      </div>
+      <div class="docs">
+        <details class="reveal" style="--d:3" open><summary>Для ребёнка</summary><div class="body"><ul><li>До 1 года: справка от педиатра об отсутствии противопоказаний.</li><li>От 1 года: справка от педиатра и соскоб на энтеробиоз.</li></ul></div></details>
+        <details class="reveal" style="--d:4"><summary>Для мамы, если она заходит в воду</summary><div class="body"><ul><li>Справка от гинеколога, разрешающая посещение детского бассейна (по результату мазка).</li><li>Соскоб на энтеробиоз.</li></ul></div></details>
+        <details class="reveal" style="--d:5"><summary>Для папы, если он заходит в воду</summary><div class="body"><ul><li>Справка от дерматовенеролога.</li><li>Соскоб на энтеробиоз.</li></ul></div></details>
+        <details class="reveal" style="--d:6"><summary>Что взять с собой</summary><div class="body"><p>Шапочку для плавания. Если забыли, её можно купить у нас: выбор большой, цена от 300 ₽. Перед занятием и после него обязательно принимаем душ.</p></div></details>
+      </div>
+    </div>
+    <div class="rope" aria-hidden="true"></div>
+  </section>
+
+  <section class="slide" id="contact" data-label="Контакты">
+    <div class="wrap contact">
+      <div class="head">
+        <p class="eyebrow reveal">Контакты</p>
+        <h2 class="reveal" style="--d:1">Ждём вас <span class="hl">на Ломоносова, 38</span></h2>
+        <dl class="cinfo reveal" style="--d:2">
+          <div><dt>Телефоны</dt><dd>+7 (343) 20 100 38<span>+7 (953) 05 100 38, также в MAX</span></dd></div>
+          <div><dt>Адрес</dt><dd>Екатеринбург, ул. Ломоносова, 38<span>Пересечение с ул. Победы. Рядом парковка.</span></dd></div>
+          <div><dt>Режим работы</dt><dd>Ежедневно, 08:00–22:00<span>По предварительной записи</span></dd></div>
+          <div><dt>Почта</dt><dd>spresent@ya.ru</dd></div>
+        </dl>
+      </div>
+      <form id="lead" class="reveal" style="--d:3">
+        <h3>Заказать звонок</h3>
+        <p class="foot">Перезвоним в течение рабочего дня и всё расскажем.</p>
+        <div class="field"><label for="name">Ваше имя</label><input type="text" id="name" autocomplete="name" required></div>
+        <div class="field"><label for="tel">Телефон</label><input type="tel" id="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="msg">Возраст ребёнка и удобное время</label><textarea id="msg" placeholder="Например: 8 месяцев, будни после 17:00"></textarea></div>
+        <div><button class="btn btn-coral" type="submit">Жду звонка</button></div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </form>
+      <p class="foot">Концепт нового сайта детского бассейна «Ноль Плюс». Сведения и фото взяты с текущего сайта.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sea = document.getElementById('sea'), ctx = sea.getContext('2d');
+  const bcv = document.getElementById('buddy'), bctx = bcv.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const TAU = Math.PI * 2;
+  const Z = { glow: 0 };
+  function shadowBlur(c, px) { if ('filter' in c) c.filter = px ? `blur(${px}px)` : 'none'; }
+
+  // One even, bright water colour for the whole page: it does not darken as you scroll
+  const WATER_TOP = [18, 163, 223], WATER_BOT = [10, 111, 194];
+
+  /* ---------- the water: a full-resolution WebGL shader ---------- */
+  const water = document.getElementById('water');
+  let gl = null;
+  const uni = {};
+  try { gl = water.getContext('webgl', { antialias: false, alpha: false }); } catch (_) { gl = null; }
+  if (gl) {
+    const VS = 'attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }';
+    const FS = `
+      #ifdef GL_FRAGMENT_PRECISION_HIGH
+      precision highp float;
+      #else
+      precision mediump float;
+      #endif
+      uniform vec2 uRes; uniform float uTime; uniform float uScroll; uniform float uLight;
+      uniform vec3 uTop; uniform vec3 uBot;
+      float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      float noise(vec2 p) {
+        vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+      }
+      float fbm(vec2 p) { float v = 0.0, a = 0.5; for (int i = 0; i < 4; i++) { v += a * noise(p); p *= 2.03; a *= 0.5; } return v; }
+      float caustic(vec2 p, float t) {
+        vec2 i = p; float c = 1.0; const float inten = 0.005;
+        for (int n = 0; n < 5; n++) {
+          float tt = t * (1.0 - 3.5 / float(n + 1));
+          i = p + vec2(cos(tt - i.x) + sin(tt + i.y), sin(tt - i.y) + cos(tt + i.x));
+          c += 1.0 / length(vec2(p.x / (sin(i.x + tt) / inten), p.y / (cos(i.y + tt) / inten)));
+        }
+        c /= 5.0;
+        c = 1.17 - pow(c, 1.4);
+        return pow(abs(c), 8.0);
+      }
+      void main() {
+        vec2 frag = gl_FragCoord.xy;
+        vec2 uv = frag / uRes;
+        float m = min(uRes.x, uRes.y);
+        float yd = 1.0 - uv.y;
+        float t = uTime;
+        vec2 q = (frag - vec2(0.0, uScroll * 0.35)) / m;
+
+        // slow drifting currents bend everything a little
+        vec2 flow = vec2(fbm(q * 2.2 + vec2(t * 0.05, -t * 0.03)), fbm(q * 2.2 + vec2(-t * 0.04, t * 0.06))) - 0.5;
+        vec3 col = mix(uTop, uBot, smoothstep(0.0, 1.0, yd + flow.y * 0.12));
+
+        // shimmering patches: the water is never one flat colour
+        float shimmer = fbm(q * 3.0 + flow * 1.5 + vec2(t * 0.07, t * 0.04));
+        col *= 0.9 + shimmer * 0.22;
+        col += vec3(0.0, 0.035, 0.05) * sin(shimmer * 6.2831 + t * 0.4) * uLight;
+
+        // caustics: light focused by surface waves, with a faint colour split
+        vec2 cp = q * 3.4 - 250.0 + flow * 0.6;
+        float tc = t * 0.42;
+        float cr = caustic(cp + vec2(0.008), tc);
+        float cg = caustic(cp, tc);
+        float cb = caustic(cp - vec2(0.008), tc);
+        float c2 = caustic(cp * 1.75 + vec2(7.0, 3.0), t * 0.31);
+        col += (vec3(cr, cg, cb) * 0.30 + vec3(c2) * 0.12) * vec3(0.78, 0.96, 1.0) * uLight * (0.55 + 0.45 * (1.0 - yd));
+
+        // light shafts falling from the surface, swaying with the waves
+        float rays = 0.0;
+        for (int k = 0; k < 5; k++) {
+          float fk = float(k);
+          float x = uv.x * uRes.x / m + yd * (0.3 + 0.05 * fk) + flow.x * 0.25;
+          float r = sin(x * (3.4 + fk * 1.9) + t * (0.18 + fk * 0.05) + fk * 1.7);
+          rays += pow(max(r, 0.0), 14.0) * (0.5 + 0.5 * sin(t * 0.27 + fk * 2.0));
+        }
+        col += vec3(0.82, 0.96, 1.0) * rays * pow(1.0 - yd * 0.85, 1.6) * 0.16 * uLight;
+
+        // glitter right under the surface at the very top of the page
+        vec2 sc = floor(frag / 14.0);
+        float h = hash(sc + 3.7);
+        float tw = sin(t * (1.5 + h * 3.5) + h * 40.0);
+        float dd = length(fract(frag / 14.0) - 0.5);
+        float glint = step(0.978, h) * pow(max(tw, 0.0), 5.0) * smoothstep(0.42, 0.0, dd);
+        float surf = 1.0;
+        col += vec3(0.9, 1.0, 1.0) * glint * pow(clamp(1.0 - yd * 1.6, 0.0, 1.0), 1.5) * surf * 0.8;
+
+        // the deeper, the more the water swallows red light
+        col.r *= 1.0 - (1.0 - uLight) * 0.35;
+        float d = distance(uv, vec2(0.5, 0.55));
+        col *= 1.0 - smoothstep(0.5, 1.1, d) * 0.16;
+        float n = fract(sin(dot(frag, vec2(12.9898, 78.233))) * 43758.5453);
+        col += (n - 0.5) / 255.0;
+        gl_FragColor = vec4(col, 1.0);
+      }`;
+    try {
+      const sh = (type, src) => {
+        const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+        return s;
+      };
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'a');
+      gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      for (const n of ['uRes', 'uTime', 'uScroll', 'uLight', 'uTop', 'uBot']) uni[n] = gl.getUniformLocation(prog, n);
+    } catch (err) { console.warn(err); gl = null; }
+  }
+  water.addEventListener('webglcontextlost', e => { e.preventDefault(); gl = null; });
+  let WDPR = 1;
+  function sizeWater() {
+    WDPR = Math.min(window.devicePixelRatio || 1, 1.5);
+    if (innerWidth * innerHeight * WDPR * WDPR > 3.2e6) WDPR = Math.sqrt(3.2e6 / (innerWidth * innerHeight));
+    water.width = Math.round(innerWidth * WDPR); water.height = Math.round(innerHeight * WDPR);
+  }
+  function drawWater(t, sy) {
+    if (!gl) return;
+    gl.viewport(0, 0, water.width, water.height);
+    gl.uniform2f(uni.uRes, water.width, water.height);
+    gl.uniform1f(uni.uTime, t / 1000);
+    gl.uniform1f(uni.uScroll, sy * WDPR);
+    gl.uniform1f(uni.uLight, 1);
+    const a = WATER_TOP, b = WATER_BOT;
+    gl.uniform3f(uni.uTop, a[0] / 255, a[1] / 255, a[2] / 255);
+    gl.uniform3f(uni.uBot, b[0] / 255, b[1] / 255, b[2] / 255);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    for (const [c, x] of [[sea, ctx], [bcv, bctx]]) {
+      c.width = Math.round(W * DPR); c.height = Math.round(H * DPR);
+      x.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    sizeWater();
+  }
+  resize();
+
+  /* ---------- marine snow and bubbles ---------- */
+  const snow = Array.from({ length: 60 }, () => ({ x: rnd(0, W), y: rnd(0, H), r: rnd(.5, 1.7), z: rnd(.15, .6), a: rnd(.12, .4), s: Math.random() * TAU }));
+  const bubbles = [];
+  function bubble(x, y, r) { if (bubbles.length < 80) bubbles.push({ x, y, r: r ?? rnd(2, 5), vy: rnd(40, 90), s: Math.random() * TAU }); }
+
+  /* ---------- fish seen from above: a flexible spine with a wave running to the tail ---------- */
+  const ptr = { x: -9999, y: -9999, active: false };
+  const KINDS = {
+    koi:     { w: .16, edge: '#ffb27a', mid: '#ff6a14', back: '#ff4300', fin: 'rgba(255,190,150,.55)', finEdge: 'rgba(255,240,225,.85)', eye: '#c98a2a', scales: 'big', tail: 'fork', pattern: 'koi', barbels: true, metal: true },
+    koiW:    { w: .16, edge: '#ffffff', mid: '#fffaf3', back: '#f1e6d8', fin: 'rgba(255,255,255,.5)', finEdge: 'rgba(255,255,255,.9)', eye: '#9a7a4a', scales: 'big', tail: 'fork', pattern: 'koiW', barbels: true, metal: true },
+    gold:    { w: .15, edge: '#ffe08a', mid: '#ffb000', back: '#ff8200', fin: 'rgba(255,200,120,.6)', finEdge: 'rgba(255,240,200,.85)', eye: '#d4a017', scales: 'big', tail: 'fork', pattern: 'gold', metal: true },
+    tang:    { w: .18, edge: '#6fd0ff', mid: '#1f66ff', back: '#0038e6', fin: 'rgba(30,80,220,.8)', finEdge: 'rgba(0,10,50,.9)', tailFin: 'rgba(255,214,0,.92)', tailEdge: 'rgba(130,85,0,.85)', eye: '#24306e', tail: 'lunate', pattern: 'tang', spineMark: '#ffe14a' },
+    clown:   { w: .19, edge: '#ffb066', mid: '#ff7a1a', back: '#ff5200', fin: 'rgba(255,120,30,.88)', finEdge: '#140a04', eye: '#ff7a00', tail: 'round', pattern: 'clown' },
+    yellow:  { w: .2,  edge: '#fff27a', mid: '#ffd91a', back: '#ffbf00', fin: 'rgba(255,225,40,.85)', finEdge: 'rgba(190,140,0,.85)', eye: '#1e1e1e', tail: 'lunate', pattern: 'yellow', spineMark: '#ffffff' },
+    parrot:  { w: .2,  edge: '#8ff3ff', mid: '#14d1ad', back: '#009e86', fin: 'rgba(255,110,200,.72)', finEdge: 'rgba(255,60,170,.95)', eye: '#ff8a00', scales: 'big', scaleRim: 'rgba(255,130,210,.5)', tail: 'lunate', pattern: 'parrot' },
+    wrasse:  { w: .21, edge: '#a8e4ff', mid: '#3f86f0', back: '#2457d6', fin: 'rgba(120,220,255,.65)', finEdge: 'rgba(255,226,80,.9)', eye: '#ff5a3c', scales: 'fine', tail: 'fork', pattern: 'wrasse' },
+    neon:    { w: .12, edge: '#9fc8ff', mid: '#1f5fc4', back: '#123f8f', fin: 'rgba(210,235,255,.45)', finEdge: 'rgba(255,255,255,.6)', eye: '#8fd8ff', tail: 'deep', pattern: 'neon' },
+    sardine: { w: .1,  edge: '#eaf6fa', mid: '#3a7fd0', back: '#1a4f9c', fin: 'rgba(230,245,250,.35)', finEdge: 'rgba(255,255,255,.6)', eye: '#cfd8dc', scales: 'fine', tail: 'deep', pattern: 'sardine' }
+  };
+  // Builds the outline of a fish bending along its spine; head points to +x
+  function fishShape(L, k, ph, bend) {
+    const N = 16, sp = [];
+    for (let i = 0; i <= N; i++) {
+      const s = i / N;
+      sp.push([L * .35 - s * L, Math.sin(ph - s * 4.2) * L * .09 * s * s + bend * L * s * s * .9]);
+    }
+    const left = [], right = [], nrm = [], wid = [];
+    for (let i = 0; i <= N; i++) {
+      const s = i / N, a = sp[Math.max(0, i - 1)], b = sp[Math.min(N, i + 1)];
+      let dx = b[0] - a[0], dy = b[1] - a[1];
+      const dl = Math.hypot(dx, dy) || 1; dx /= dl; dy /= dl;
+      const w = L * k.w * Math.pow(Math.max(0, Math.sin(Math.PI * Math.pow(s, .75) * .97 + .04)), .8);
+      nrm.push([-dy, dx]); wid.push(w);
+      left.push([sp[i][0] - dy * w, sp[i][1] + dx * w]);
+      right.push([sp[i][0] + dy * w, sp[i][1] - dx * w]);
+    }
+    const body = new Path2D();
+    const tip = [sp[0][0] + L * .03, sp[0][1]];
+    body.moveTo(tip[0], tip[1]);
+    body.quadraticCurveTo(left[0][0], left[0][1], (left[0][0] + left[1][0]) / 2, (left[0][1] + left[1][1]) / 2);
+    for (let i = 1; i < N; i++) body.quadraticCurveTo(left[i][0], left[i][1], (left[i][0] + left[i + 1][0]) / 2, (left[i][1] + left[i + 1][1]) / 2);
+    body.lineTo(left[N][0], left[N][1]); body.lineTo(right[N][0], right[N][1]);
+    for (let i = N - 1; i > 0; i--) body.quadraticCurveTo(right[i][0], right[i][1], (right[i][0] + right[i - 1][0]) / 2, (right[i][1] + right[i - 1][1]) / 2);
+    body.quadraticCurveTo(right[0][0], right[0][1], tip[0], tip[1]);
+    body.closePath();
+    // a point on the body: s runs 0 (snout) … 1 (tail root), off runs -1 … 1 across the width
+    const at = (s, off) => {
+      const f = clamp(s, 0, 1) * N, i = Math.min(N - 1, Math.floor(f)), t = f - i;
+      const x = sp[i][0] + (sp[i + 1][0] - sp[i][0]) * t, y = sp[i][1] + (sp[i + 1][1] - sp[i][1]) * t;
+      const nx = nrm[i][0] + (nrm[i + 1][0] - nrm[i][0]) * t, ny = nrm[i][1] + (nrm[i + 1][1] - nrm[i][1]) * t;
+      const w = wid[i] + (wid[i + 1] - wid[i]) * t;
+      return [x + nx * w * off, y + ny * w * off];
+    };
+    const tanAt = s => {
+      const i = Math.min(N - 1, Math.floor(clamp(s, 0, 1) * N));
+      return Math.atan2(sp[i + 1][1] - sp[i][1], sp[i + 1][0] - sp[i][0]);
+    };
+    return { sp, nrm, wid, body, N, at, tanAt };
+  }
+  function bandPath(at, s0, s1, off) {
+    const p = new Path2D();
+    let first = true;
+    for (let s = s0; s <= s1 + 1e-6; s += .04) { const q = at(s, off); first ? p.moveTo(q[0], q[1]) : p.lineTo(q[0], q[1]); first = false; }
+    for (let s = s1; s >= s0 - 1e-6; s -= .04) { const q = at(s, -off); p.lineTo(q[0], q[1]); }
+    p.closePath();
+    return p;
+  }
+  function linePath(c, at, s0, s1, off, step = .03) {
+    c.beginPath();
+    for (let s = s0, first = true; s <= s1 + 1e-6; s += step, first = false) { const q = at(s, off); first ? c.moveTo(q[0], q[1]) : c.lineTo(q[0], q[1]); }
+  }
+  // A fan-shaped fin with rays: pectoral and pelvic fins
+  function drawFanFin(c, B, dirA, r, spread, k, detail) {
+    const pts = [];
+    for (let j = 0; j <= 6; j++) {
+      const a = dirA - spread + j / 6 * spread * 2, rr = r * (.82 + .18 * Math.sin(j / 6 * Math.PI));
+      pts.push([B[0] + Math.cos(a) * rr, B[1] + Math.sin(a) * rr]);
+    }
+    const p = new Path2D(); p.moveTo(B[0], B[1]); pts.forEach(q => p.lineTo(q[0], q[1])); p.closePath();
+    const g = c.createRadialGradient(B[0], B[1], 0, B[0], B[1], r);
+    g.addColorStop(0, k.fin); g.addColorStop(1, 'rgba(255,255,255,.12)');
+    c.fillStyle = g; c.fill(p);
+    if (detail) {
+      c.strokeStyle = 'rgba(255,255,255,.4)'; c.lineWidth = .7;
+      for (const q of pts) { c.beginPath(); c.moveTo(B[0], B[1]); c.lineTo(q[0], q[1]); c.stroke(); }
+    }
+    c.strokeStyle = k.finEdge; c.lineWidth = detail ? 1.1 : .7;
+    c.beginPath(); pts.forEach((q, j) => j ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1])); c.stroke();
+  }
+  function drawTail(c, f, L, k, ph, detail) {
+    const { sp, N } = f, T = sp[N], P = sp[N - 1];
+    let dx = T[0] - P[0], dy = T[1] - P[1]; const dl = Math.hypot(dx, dy) || 1; dx /= dl; dy /= dl;
+    const nx = -dy, ny = dx, flare = 1 + Math.sin(ph - 4.6) * .12;
+    const type = k.tail || 'fork', M = 12, edge = [];
+    const tl = type === 'round' ? .2 : type === 'deep' ? .26 : .24, ts = type === 'round' ? .12 : .16;
+    for (let j = 0; j <= M; j++) {
+      const u = j / M * 2 - 1, au = Math.abs(u);
+      const prof = type === 'round' ? 1 - .3 * u * u : type === 'deep' ? .3 + .7 * Math.pow(au, 1.4) : type === 'lunate' ? .45 + .55 * Math.pow(au, 2.2) : .55 + .45 * Math.pow(au, 1.2);
+      const rip = Math.sin(ph * 2 + j * .9) * L * .005;
+      edge.push([T[0] + dx * (L * tl * prof + rip) + nx * L * ts * u * flare, T[1] + dy * (L * tl * prof + rip) + ny * L * ts * u * flare]);
+    }
+    const p = new Path2D();
+    p.moveTo(T[0] - nx * L * .035, T[1] - ny * L * .035);
+    edge.forEach((q, j) => {
+      if (!j) { p.lineTo(q[0], q[1]); return; }
+      const m = [(edge[j - 1][0] + q[0]) / 2, (edge[j - 1][1] + q[1]) / 2];
+      p.quadraticCurveTo(edge[j - 1][0], edge[j - 1][1], m[0], m[1]);
+    });
+    p.lineTo(edge[M][0], edge[M][1]);
+    p.lineTo(T[0] + nx * L * .035, T[1] + ny * L * .035);
+    p.closePath();
+    const g = c.createLinearGradient(T[0], T[1], T[0] + dx * L * tl, T[1] + dy * L * tl);
+    g.addColorStop(0, k.tailFin || k.fin); g.addColorStop(1, k.tailFin ? k.tailFin : 'rgba(255,255,255,.18)');
+    c.fillStyle = g; c.fill(p);
+    if (detail) {
+      c.strokeStyle = 'rgba(255,255,255,.38)'; c.lineWidth = .7;
+      for (let j = 0; j <= M; j += 2) {
+        const q = edge[j];
+        c.beginPath(); c.moveTo(T[0], T[1]);
+        c.quadraticCurveTo(T[0] + dx * L * tl * .5 + nx * L * ts * (j / M * 2 - 1) * .4, T[1] + dy * L * tl * .5 + ny * L * ts * (j / M * 2 - 1) * .4, q[0], q[1]);
+        c.stroke();
+      }
+    }
+    c.strokeStyle = k.tailEdge || k.finEdge; c.lineWidth = detail ? 1.3 : .8;
+    c.beginPath(); edge.forEach((q, j) => j ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1])); c.stroke();
+  }
+  function softSpot(c, q, rx, ry, rot, col) {
+    c.save(); c.globalAlpha *= .45; c.fillStyle = col;
+    c.beginPath(); c.ellipse(q[0], q[1], rx * 1.25, ry * 1.25, rot, 0, TAU); c.fill(); c.restore();
+    c.fillStyle = col; c.beginPath(); c.ellipse(q[0], q[1], rx, ry, rot, 0, TAU); c.fill();
+  }
+  function drawTopFish(c, x, y, ang, L, k, ph, bend, seed, depth = 1) {
+    const f = fishShape(L, k, ph, bend), { body, at, tanAt } = f;
+    const detail = L >= 40;
+    // shadow on the floor: the sun is up and to the left, so shadows fall down and right
+    c.save(); c.translate(x + L * .12 * depth, y + L * .2 * depth); c.rotate(ang);
+    shadowBlur(c, 4); c.fillStyle = 'rgba(2,18,45,.22)'; c.fill(body); shadowBlur(c, 0);
+    c.restore();
+    c.save(); c.translate(x, y); c.rotate(ang);
+    c.lineJoin = 'round'; c.lineCap = 'round';
+
+    // fins that sit under the body: pelvic, then pectoral
+    for (const sd of [-1, 1]) {
+      const sideA = s => { const q0 = at(s, 0), q1 = at(s, sd); return Math.atan2(q1[1] - q0[1], q1[0] - q0[0]); };
+      const back = tanAt(.46), out = sideA(.46);
+      if (detail) drawFanFin(c, at(.46, sd * .7), Math.atan2(Math.sin(back) * .7 + Math.sin(out) * .6, Math.cos(back) * .7 + Math.cos(out) * .6), L * .075, .35, k, detail);
+      const backP = tanAt(.22), outP = sideA(.22), flap = .65 + .35 * Math.sin(ph * 1.3 + sd);
+      const pa = Math.atan2(Math.sin(backP) * .65 + Math.sin(outP) * .75 * flap, Math.cos(backP) * .65 + Math.cos(outP) * .75 * flap);
+      drawFanFin(c, at(.22, sd * .92), pa, L * .12, .42, k, detail);
+    }
+    drawTail(c, f, L, k, ph, detail);
+
+    // body volume: light flanks, a darker band along the back, a darker spine
+    c.fillStyle = k.edge; c.fill(body);
+    c.save(); c.clip(body);
+    c.fillStyle = k.mid; c.fill(bandPath(at, 0, 1, .72));
+    c.fillStyle = k.back; c.fill(bandPath(at, .02, 1, .36));
+
+    // species markings
+    const pat = k.pattern, hs = n => ((Math.sin(seed * 91.7 + n * 12.9) * 43758.5) % 1 + 1) % 1;
+    if (pat === 'koi') {
+      for (let n = 0; n < 3; n++) { const q = at(.18 + n * .24 + hs(n) * .08, (hs(n + 3) - .5) * 1.2); softSpot(c, q, L * (.07 + hs(n + 5) * .05), L * (.05 + hs(n + 7) * .03), tanAt(.4) + hs(n) * .8, '#fff8ef'); }
+    } else if (pat === 'koiW') {
+      for (let n = 0; n < 2; n++) { const q = at(.15 + n * .32 + hs(n) * .1, (hs(n + 3) - .5) * .8); softSpot(c, q, L * (.09 + hs(n + 5) * .04), L * (.06 + hs(n + 7) * .03), tanAt(.4), '#ff3d00'); }
+      for (let n = 0; n < 3; n++) { const q = at(.4 + n * .15, (hs(n + 9) - .5) * 1.4); softSpot(c, q, L * .025, L * .018, 0, '#1f1a1a'); }
+    } else if (pat === 'tang') {
+      // the dark "palette" marking of a blue tang
+      for (const sd of [-1, 1]) {
+        c.strokeStyle = '#071640'; c.lineWidth = L * .05;
+        c.beginPath(); const q0 = at(.12, sd * .4); c.moveTo(q0[0], q0[1]);
+        for (let s = .16; s <= .82; s += .04) { const q = at(s, sd * (.5 + Math.sin((s - .12) / .7 * Math.PI) * .2)); c.lineTo(q[0], q[1]); }
+        const q1 = at(.88, sd * .15); c.lineTo(q1[0], q1[1]); c.stroke();
+      }
+      c.strokeStyle = 'rgba(7,22,64,.7)'; c.lineWidth = L * .025; linePath(c, at, .04, .3, 0); c.stroke();
+    } else if (pat === 'clown') {
+      for (const s0 of [.13, .42, .72]) {
+        const pts = [];
+        for (let off = -1.2; off <= 1.21; off += .2) pts.push(at(s0 - .035 * (1 - off * off / 1.44), off));
+        for (const [col, lw] of [['#140a04', L * .09], ['#ffffff', L * .062]]) {
+          c.strokeStyle = col; c.lineWidth = lw; c.beginPath(); pts.forEach((q, j) => j ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1])); c.stroke();
+        }
+      }
+    } else if (pat === 'yellow') {
+      c.strokeStyle = 'rgba(255,255,255,.14)'; c.lineWidth = 1;
+      for (let s = .15; s < .9; s += .05) { const a = at(s, -1), b = at(s, 1); c.beginPath(); c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.stroke(); }
+    } else if (pat === 'parrot') {
+      for (const sd of [-1, 1]) {
+        c.strokeStyle = 'rgba(255,105,190,.85)'; c.lineWidth = L * .018;
+        linePath(c, at, .03, .2, sd * .5, .02); c.stroke();
+        linePath(c, at, .06, .16, sd * .8, .02); c.stroke();
+      }
+      c.strokeStyle = 'rgba(255,105,190,.75)'; c.lineWidth = L * .02; linePath(c, at, .2, .92, 0); c.stroke();
+    } else if (pat === 'wrasse') {
+      for (const sd of [-1, 1]) {
+        c.strokeStyle = '#ffe14a'; c.lineWidth = L * .02;
+        linePath(c, at, .2, .92, sd * .46); c.stroke();
+        for (const o of [.25, .55, .85]) { c.lineWidth = L * .012; linePath(c, at, .02, .16, sd * o, .02); c.stroke(); }
+      }
+    } else if (pat === 'neon') {
+      for (const sd of [-1, 1]) {
+        c.strokeStyle = '#ff2d5a'; c.lineWidth = L * .07; linePath(c, at, .5, .95, sd * .82); c.stroke();
+        c.strokeStyle = 'rgba(43,251,255,.35)'; c.lineWidth = L * .07; linePath(c, at, .08, .72, sd * .38); c.stroke();
+        c.strokeStyle = '#2bfbff'; c.lineWidth = L * .03; linePath(c, at, .08, .72, sd * .38); c.stroke();
+      }
+    } else if (pat === 'sardine') {
+      for (const sd of [-1, 1]) {
+        c.strokeStyle = 'rgba(127,255,212,.4)'; c.lineWidth = L * .03; linePath(c, at, .15, .9, sd * .42); c.stroke();
+        c.fillStyle = 'rgba(10,30,60,.7)';
+        for (const s of [.24, .31, .38, .45]) { const q = at(s, sd * .6); c.beginPath(); c.arc(q[0], q[1], L * .018, 0, TAU); c.fill(); }
+      }
+    }
+
+    // scales: overlapping rows, free edges facing the tail
+    if (k.scales && detail) {
+      const big = k.scales === 'big', step = big ? .055 : .04, r = L * (big ? .042 : .028);
+      c.lineWidth = big ? 1 : .7;
+      for (let s = .2, row = 0; s < .9; s += step, row++) {
+        const ta = tanAt(s);
+        for (let off = -.85 + (row % 2) * .14; off <= .86; off += .28) {
+          const q = at(s, off);
+          c.strokeStyle = k.scaleRim || 'rgba(255,255,255,.28)';
+          c.beginPath(); c.arc(q[0], q[1], r, ta - 1.25, ta + 1.25); c.stroke();
+          c.strokeStyle = 'rgba(0,0,0,.08)';
+          c.beginPath(); c.arc(q[0] - Math.cos(ta) * 1.2, q[1] - Math.sin(ta) * 1.2, r, ta - 1.1, ta + 1.1); c.stroke();
+        }
+      }
+    }
+    if (detail) {
+      // lateral line, gill covers, nostrils
+      c.fillStyle = 'rgba(0,0,0,.22)';
+      for (const sd of [-1, 1]) for (let s = .24; s < .9; s += .035) { const q = at(s, sd * .66); c.beginPath(); c.arc(q[0], q[1], Math.max(.6, L * .0055), 0, TAU); c.fill(); }
+      for (const sd of [-1, 1]) {
+        const a = at(.23, sd * 1.05), m = at(.215, sd * .45), b = at(.14, sd * .08);
+        c.strokeStyle = 'rgba(0,0,0,.28)'; c.lineWidth = Math.max(1, L * .012);
+        c.beginPath(); c.moveTo(a[0], a[1]); c.quadraticCurveTo(m[0], m[1], b[0], b[1]); c.stroke();
+        const a2 = at(.215, sd * 1.05), m2 = at(.2, sd * .45), b2 = at(.13, sd * .08);
+        c.strokeStyle = 'rgba(255,255,255,.25)'; c.lineWidth = Math.max(.7, L * .007);
+        c.beginPath(); c.moveTo(a2[0], a2[1]); c.quadraticCurveTo(m2[0], m2[1], b2[0], b2[1]); c.stroke();
+        const n = at(.04, sd * .38); c.fillStyle = 'rgba(0,0,0,.45)'; c.beginPath(); c.arc(n[0], n[1], Math.max(.7, L * .007), 0, TAU); c.fill();
+      }
+    }
+    // roundness: darker rim, a highlight along the back, a sheen that slides with the swimming
+    c.strokeStyle = 'rgba(0,10,30,.22)'; c.lineWidth = L * .035; c.stroke(body);
+    c.strokeStyle = 'rgba(255,255,255,.3)'; c.lineWidth = Math.max(1, L * .02); linePath(c, at, .05, .6, .18); c.stroke();
+    const sx = (Math.sin(ph * .15 + seed * 6) * .5 + .5) * L - L * .65;
+    const sh = c.createLinearGradient(sx - L * .2, 0, sx + L * .2, 0);
+    sh.addColorStop(0, 'rgba(255,255,255,0)'); sh.addColorStop(.5, `rgba(255,255,255,${k.metal ? .24 : .14})`); sh.addColorStop(1, 'rgba(255,255,255,0)');
+    c.fillStyle = sh; c.fillRect(-L, -L, L * 2, L * 2);
+    if (detail) {
+      // dappled light from the waves on the fish's back
+      c.fillStyle = 'rgba(255,255,255,.1)';
+      for (let n = 0; n < 4; n++) { c.beginPath(); c.ellipse(Math.sin(ph * .11 + n * 2 + seed * 9) * L * .35, Math.cos(ph * .09 + n * 1.3) * L * k.w * .6, L * .06, L * .03, n, 0, TAU); c.fill(); }
+    }
+    c.restore();
+    c.strokeStyle = 'rgba(8,24,56,.55)'; c.lineWidth = Math.max(1, L * .012); c.stroke(body);
+
+    // dorsal fin standing up along the spine, swaying a little
+    if (detail) {
+      const pts = [];
+      for (let s = .28; s <= .72; s += .03) { const q = at(s, Math.sin(ph - s * 5) * .14); pts.push(q); }
+      c.strokeStyle = k.finEdge; c.lineWidth = L * .045; c.beginPath(); pts.forEach((q, j) => j ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1])); c.stroke();
+      c.strokeStyle = k.fin; c.lineWidth = L * .03; c.stroke();
+      c.strokeStyle = 'rgba(255,255,255,.45)'; c.lineWidth = .8;
+      for (let j = 0; j < pts.length - 1; j++) {
+        const a = Math.atan2(pts[j + 1][1] - pts[j][1], pts[j + 1][0] - pts[j][0]) + Math.PI / 2, h = L * .016;
+        c.beginPath(); c.moveTo(pts[j][0] - Math.cos(a) * h, pts[j][1] - Math.sin(a) * h); c.lineTo(pts[j][0] + Math.cos(a) * h, pts[j][1] + Math.sin(a) * h); c.stroke();
+      }
+    }
+    // the scalpel spine near the tail of a tang
+    if (k.spineMark && detail) for (const sd of [-1, 1]) {
+      const q = at(.87, sd * .72), ta = tanAt(.87);
+      c.fillStyle = k.spineMark; c.beginPath(); c.ellipse(q[0], q[1], L * .028, L * .011, ta, 0, TAU); c.fill();
+    }
+    // snout: lips, a parrotfish beak, koi barbels
+    const tipQ = at(0, 0), ta0 = tanAt(0) + Math.PI;
+    c.fillStyle = k.back; c.beginPath(); c.ellipse(tipQ[0] + Math.cos(ta0) * L * .01, tipQ[1] + Math.sin(ta0) * L * .01, L * .022, f.wid[1] * .45, ta0, 0, TAU); c.fill();
+    if (pat === 'parrot') {
+      c.fillStyle = '#e8fff6'; c.strokeStyle = 'rgba(0,80,70,.6)'; c.lineWidth = .8;
+      c.beginPath(); c.ellipse(tipQ[0] + Math.cos(ta0) * L * .02, tipQ[1] + Math.sin(ta0) * L * .02, L * .028, f.wid[1] * .5, ta0, 0, TAU); c.fill(); c.stroke();
+      c.beginPath(); c.moveTo(tipQ[0] - Math.cos(ta0) * L * .005, tipQ[1] - Math.sin(ta0) * L * .005); c.lineTo(tipQ[0] + Math.cos(ta0) * L * .045, tipQ[1] + Math.sin(ta0) * L * .045); c.stroke();
+    }
+    if (k.barbels) for (const sd of [-1, 1]) {
+      const b = at(.02, sd * .5);
+      c.strokeStyle = 'rgba(255,220,190,.8)'; c.lineWidth = Math.max(1, L * .008);
+      c.beginPath(); c.moveTo(b[0], b[1]);
+      c.quadraticCurveTo(b[0] + Math.cos(ta0) * L * .04 + Math.cos(ta0 + sd * 1.6) * L * .03, b[1] + Math.sin(ta0) * L * .04 + Math.sin(ta0 + sd * 1.6) * L * .03,
+        b[0] + Math.cos(ta0 + sd * 1.1) * L * .07, b[1] + Math.sin(ta0 + sd * 1.1) * L * .07 + Math.sin(ph) * L * .008);
+      c.stroke();
+    }
+    // eyes bulge from the sides of the head: socket, iris, pupil and two catchlights
+    for (const sd of [-1, 1]) {
+      const e = at(.075, sd * .86), er = Math.max(1.3, L * .033);
+      if (detail) { c.fillStyle = 'rgba(0,0,0,.25)'; c.beginPath(); c.arc(e[0], e[1], er * 1.35, 0, TAU); c.fill(); }
+      const ig = c.createRadialGradient(e[0] - er * .2, e[1] - er * .2, er * .1, e[0], e[1], er);
+      ig.addColorStop(0, '#ffffff'); ig.addColorStop(.35, k.eye); ig.addColorStop(1, '#101010');
+      c.fillStyle = ig; c.beginPath(); c.arc(e[0], e[1], er, 0, TAU); c.fill();
+      c.fillStyle = '#05080a'; c.beginPath(); c.arc(e[0], e[1], er * .55, 0, TAU); c.fill();
+      c.fillStyle = 'rgba(255,255,255,.95)'; c.beginPath(); c.arc(e[0] - er * .3, e[1] - er * .35, er * .28, 0, TAU); c.fill();
+      if (detail) { c.fillStyle = 'rgba(255,255,255,.7)'; c.beginPath(); c.arc(e[0] + er * .3, e[1] + er * .3, er * .12, 0, TAU); c.fill(); }
+      c.strokeStyle = 'rgba(0,0,0,.5)'; c.lineWidth = .8; c.beginPath(); c.arc(e[0], e[1], er, 0, TAU); c.stroke();
+    }
+    c.restore();
+  }
+
+  // A fish that steers: wanders, keeps to its group, avoids its neighbours and the pointer
+  function makeSwimmer(kind, L, x, y, vmin, vmax) {
+    const a = Math.random() * TAU;
+    return { k: KINDS[kind], L, x, y, vx: Math.cos(a) * vmin, vy: Math.sin(a) * vmin, ang: a, ph: Math.random() * TAU, bend: 0, seed: Math.random(), wander: a, vmin, vmax, scared: 0 };
+  }
+  const wrapAngle = a => Math.atan2(Math.sin(a), Math.cos(a));
+  function steer(group, dt, box, o) {
+    for (const f of group) {
+      let ax = 0, ay = 0;
+      f.wander += rnd(-1, 1) * dt * 2.5;
+      ax += Math.cos(f.wander) * o.wander; ay += Math.sin(f.wander) * o.wander;
+      let n = 0, mvx = 0, mvy = 0, mx = 0, my = 0;
+      for (const g of group) {
+        if (g === f) continue;
+        const dx = g.x - f.x, dy = g.y - f.y, d = Math.hypot(dx, dy) || 1;
+        if (d < o.sepR) { ax -= dx / d * (o.sepR - d) * o.sep; ay -= dy / d * (o.sepR - d) * o.sep; }
+        if (d < o.viewR) { n++; mvx += g.vx; mvy += g.vy; mx += g.x; my += g.y; }
+      }
+      if (n) { ax += (mvx / n - f.vx) * o.align + (mx / n - f.x) * o.coh; ay += (mvy / n - f.vy) * o.align + (my / n - f.y) * o.coh; }
+      const m = 70;
+      if (f.x < box.x0 + m) ax += (box.x0 + m - f.x) * 3; if (f.x > box.x1 - m) ax -= (f.x - box.x1 + m) * 3;
+      if (f.y < box.y0 + m) ay += (box.y0 + m - f.y) * 3; if (f.y > box.y1 - m) ay -= (f.y - box.y1 + m) * 3;
+      if (ptr.active) {
+        const dx = f.x - ptr.x, dy = f.y - ptr.y, d = Math.hypot(dx, dy) || 1;
+        if (d < 150) { ax += dx / d * (150 - d) * 9; ay += dy / d * (150 - d) * 9; f.scared = 1; }
+      }
+      f.scared = Math.max(0, f.scared - dt * .8);
+      f.vx += ax * dt; f.vy += ay * dt;
+      const sp = Math.hypot(f.vx, f.vy) || 1, vmax = f.vmax * (1 + f.scared * 1.4);
+      const want = clamp(sp, f.vmin, vmax);
+      f.vx *= want / sp; f.vy *= want / sp;
+      f.x += f.vx * dt; f.y += f.vy * dt;
+      const da = wrapAngle(Math.atan2(f.vy, f.vx) - f.ang), turn = clamp(da, -3.2 * dt, 3.2 * dt);
+      f.ang += turn;
+      f.bend += (clamp(-turn / dt * .18, -.4, .4) - f.bend) * Math.min(1, dt * 5);
+      f.ph += dt * (3 + want * .07);
+    }
+  }
+
+  /* ---------- the guide fish: a cartoon tropical fish with outlines, stripes and flowing fins ---------- */
+  const OUTLINE = '#5b2350';
+  function finGrad(c, x0, y0, x1, y1) {
+    const g = c.createLinearGradient(x0, y0, x1, y1);
+    g.addColorStop(0, '#ff7eb6'); g.addColorStop(.55, '#c46bff'); g.addColorStop(1, '#6f5cff');
+    return g;
+  }
+  function finRays(c, path, lines, width) {
+    c.save(); c.clip(path);
+    c.strokeStyle = 'rgba(255,255,255,.42)'; c.lineWidth = width;
+    for (const l of lines) { c.beginPath(); c.moveTo(l[0], l[1]); c.quadraticCurveTo(l[2], l[3], l[4], l[5]); c.stroke(); }
+    c.restore();
+  }
+  function drawGuide(c, R, ph, blink, talking, lx, ly) {
+    const sw = Math.sin(ph), sw2 = Math.sin(ph - 1.1), sw3 = Math.sin(ph - 2);
+    const tb = sw * R * .08;
+    const lw = Math.max(2, R * .07);
+    c.lineJoin = 'round'; c.lineCap = 'round';
+
+    const tw1 = sw2 * R * .35, tw2 = sw3 * R * .2;
+    const tail = new Path2D();
+    tail.moveTo(-R * .82, tb - R * .2);
+    tail.bezierCurveTo(-R * 1.15, -R * .35 + tw1 * .5, -R * 1.55, -R * 1.1 + tw1, -R * 1.98, -R * .95 + tw1 + tw2);
+    tail.quadraticCurveTo(-R * 1.72, -R * .4 + tw1, -R * 1.6, tw1 * .9);
+    tail.quadraticCurveTo(-R * 1.72, R * .4 + tw1, -R * 1.98, R * .95 + tw1 - tw2);
+    tail.bezierCurveTo(-R * 1.55, R * 1.1 + tw1, -R * 1.15, R * .35 + tw1 * .5, -R * .82, tb + R * .2);
+    tail.closePath();
+    c.fillStyle = finGrad(c, -R * .8, 0, -R * 2, 0); c.fill(tail);
+    const tl = [];
+    for (let k = -3; k <= 3; k++) { const a = k / 3; tl.push([-R * .85, tb + a * R * .12, -R * 1.35, a * R * .6 + tw1 * .6, -R * 2.05, a * R * 1.1 + tw1 + (a < 0 ? tw2 : -tw2)]); }
+    finRays(c, tail, tl, Math.max(1, R * .035));
+    c.strokeStyle = OUTLINE; c.lineWidth = lw; c.stroke(tail);
+
+    const dorsal = new Path2D(), dl = [], N = 16;
+    dorsal.moveTo(R * .42, -R * .78);
+    for (let k = 0; k <= N; k++) {
+      const t = k / N, x = R * .42 - R * 1.14 * t;
+      const y = -R * .8 + t * R * .25 - Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.08)), .8) * R * .62 - Math.sin(t * 9 - ph * 1.6) * R * .05 * t;
+      dorsal.lineTo(x, y);
+      if (k % 3 === 1) dl.push([x + R * .05, -R * .6, x + R * .02, (y - R * .6) / 2, x, y + R * .02]);
+    }
+    dorsal.lineTo(-R * .5, -R * .45); dorsal.lineTo(R * .3, -R * .6); dorsal.closePath();
+    c.fillStyle = finGrad(c, 0, -R * .7, 0, -R * 1.4); c.fill(dorsal);
+    finRays(c, dorsal, dl, Math.max(1, R * .03));
+    c.strokeStyle = OUTLINE; c.lineWidth = lw; c.stroke(dorsal);
+
+    const anal = new Path2D();
+    anal.moveTo(-R * .1, R * .72);
+    anal.quadraticCurveTo(-R * .42, R * 1.28 + sw2 * R * .08, -R * .84, R * 1.02 + sw2 * R * .12);
+    anal.quadraticCurveTo(-R * .72, R * .6, -R * .55, R * .48);
+    anal.closePath();
+    c.fillStyle = finGrad(c, 0, R * .6, -R * .6, R * 1.2); c.fill(anal);
+    finRays(c, anal, [[-R * .2, R * .7, -R * .35, R * .95, -R * .5, R * 1.15], [-R * .4, R * .62, -R * .55, R * .85, -R * .72, R * 1.0]], Math.max(1, R * .03));
+    c.strokeStyle = OUTLINE; c.lineWidth = lw; c.stroke(anal);
+
+    const sq = 1 + sw * .025;
+    c.save(); c.scale(sq, 2 - sq);
+    const body = new Path2D();
+    body.moveTo(R * 1.08, R * .08);
+    body.bezierCurveTo(R * 1.05, -R * .78, R * .25, -R * 1.0, -R * .42, -R * .66);
+    body.quadraticCurveTo(-R * .78, -R * .42 + tb, -R * .9, tb);
+    body.quadraticCurveTo(-R * .78, R * .42 + tb, -R * .42, R * .66);
+    body.bezierCurveTo(R * .25, R * 1.0, R * 1.05, R * .8, R * 1.08, R * .08);
+    body.closePath();
+    const bg = c.createRadialGradient(R * .45, -R * .35, R * .1, R * .1, 0, R * 1.25);
+    bg.addColorStop(0, '#fff27a'); bg.addColorStop(.4, '#ffc93c'); bg.addColorStop(.75, '#ff9a2e'); bg.addColorStop(1, '#ff5e62');
+    c.fillStyle = bg; c.fill(body);
+    c.save(); c.clip(body);
+    c.fillStyle = 'rgba(255,247,214,.75)';
+    c.beginPath(); c.ellipse(R * .25, R * .74, R * .95, R * .38, -.08, 0, TAU); c.fill();
+    for (const [sx, wd] of [[R * .1, R * .2], [-R * .52, R * .16]]) {
+      const st = new Path2D();
+      st.moveTo(sx + wd * .5 + R * .12, -R * 1.1);
+      st.quadraticCurveTo(sx - R * .12 + wd * .5, 0, sx + wd * .5 + R * .12, R * 1.1);
+      st.lineTo(sx - wd * .5 + R * .12, R * 1.1);
+      st.quadraticCurveTo(sx - R * .12 - wd * .5, 0, sx - wd * .5 + R * .12, -R * 1.1);
+      st.closePath();
+      const sg = c.createLinearGradient(0, -R, 0, R);
+      sg.addColorStop(0, '#1f8bff'); sg.addColorStop(.5, '#3ee6ff'); sg.addColorStop(1, '#1f8bff');
+      c.fillStyle = sg; c.fill(st);
+      c.strokeStyle = '#ffffff'; c.lineWidth = R * .06; c.stroke(st);
+    }
+    c.strokeStyle = 'rgba(255,255,255,.3)'; c.lineWidth = Math.max(1, R * .03);
+    for (let row = -2; row <= 2; row++) for (let col = 0; col < 3; col++) {
+      const x = -R * .12 - col * R * .2 + (row & 1) * R * .1;
+      c.beginPath(); c.arc(x, row * R * .2, R * .1, Math.PI / 2, Math.PI * 1.5); c.stroke();
+    }
+    c.fillStyle = 'rgba(255,255,255,.55)';
+    c.beginPath(); c.ellipse(R * .35, -R * .64, R * .42, R * .12, -.18, 0, TAU); c.fill();
+    c.fillStyle = 'rgba(255,255,255,.85)';
+    c.beginPath(); c.arc(R * .84, -R * .48, R * .055, 0, TAU); c.fill();
+    c.fillStyle = 'rgba(180,40,80,.18)';
+    c.beginPath(); c.ellipse(R * .1, R * 1.0, R * 1.1, R * .3, 0, 0, TAU); c.fill();
+    c.restore();
+    c.strokeStyle = OUTLINE; c.lineWidth = lw; c.stroke(body);
+    c.restore();
+
+    c.save();
+    c.translate(R * .12, R * .3); c.rotate(.5 + Math.sin(ph * 1.5) * .45);
+    const pec = new Path2D();
+    pec.moveTo(0, 0);
+    pec.quadraticCurveTo(-R * .25, -R * .3, -R * .58, -R * .06);
+    pec.quadraticCurveTo(-R * .3, R * .22, 0, 0);
+    pec.closePath();
+    c.fillStyle = finGrad(c, 0, 0, -R * .6, 0); c.fill(pec);
+    finRays(c, pec, [[0, 0, -R * .25, -R * .15, -R * .55, -R * .1], [0, 0, -R * .25, R * .02, -R * .5, R * .04]], Math.max(1, R * .03));
+    c.strokeStyle = OUTLINE; c.lineWidth = lw * .8; c.stroke(pec);
+    c.restore();
+
+    c.fillStyle = 'rgba(255,82,140,.5)';
+    c.beginPath(); c.ellipse(R * .74, R * .26, R * .15, R * .09, 0, 0, TAU); c.fill();
+
+    const ex = R * .52, ey = -R * .18, er = R * .33;
+    const eye = new Path2D(); eye.arc(ex, ey, er, 0, TAU);
+    c.fillStyle = '#ffffff'; c.fill(eye);
+    c.save(); c.clip(eye);
+    const ix = ex + R * .05 + lx * er * .2, iy = ey + ly * er * .2;
+    const ig = c.createRadialGradient(ix - er * .1, iy - er * .15, er * .05, ix, iy, er * .62);
+    ig.addColorStop(0, '#8ff6ff'); ig.addColorStop(.5, '#1fa2ff'); ig.addColorStop(1, '#143c9e');
+    c.fillStyle = ig; c.beginPath(); c.arc(ix, iy, er * .62, 0, TAU); c.fill();
+    c.fillStyle = '#0b1530'; c.beginPath(); c.arc(ix, iy, er * .32, 0, TAU); c.fill();
+    c.fillStyle = '#ffffff';
+    c.beginPath(); c.arc(ix - er * .2, iy - er * .24, er * .2, 0, TAU); c.fill();
+    c.beginPath(); c.arc(ix + er * .2, iy + er * .2, er * .09, 0, TAU); c.fill();
+    if (blink > 0) {
+      const lid = ey - er + blink * er * 2.05;
+      c.fillStyle = '#ffb53a'; c.fillRect(ex - er, ey - er, er * 2, lid - (ey - er));
+      c.strokeStyle = OUTLINE; c.lineWidth = lw * .7;
+      c.beginPath(); c.moveTo(ex - er, lid); c.lineTo(ex + er, lid); c.stroke();
+    }
+    c.restore();
+    c.strokeStyle = OUTLINE; c.lineWidth = lw * .8; c.stroke(eye);
+    c.lineWidth = lw * .6;
+    for (const a of [-2.35, -1.95, -1.55]) {
+      c.beginPath();
+      c.moveTo(ex + Math.cos(a) * er, ey + Math.sin(a) * er);
+      c.lineTo(ex + Math.cos(a) * er * 1.28, ey + Math.sin(a) * er * 1.28);
+      c.stroke();
+    }
+    c.lineWidth = lw * .75;
+    c.beginPath(); c.arc(ex + R * .04, ey - er * .55 - (talking ? R * .08 : 0), er * 1.05, -2.25, -1.05); c.stroke();
+
+    const mx = R * .98, my = R * .24;
+    c.strokeStyle = OUTLINE; c.lineWidth = lw * .85;
+    if (talking) {
+      c.fillStyle = '#7a1838';
+      c.beginPath(); c.ellipse(mx - R * .05, my, R * .12, R * .11, 0, 0, TAU); c.fill();
+      c.fillStyle = '#ff7a9c';
+      c.beginPath(); c.ellipse(mx - R * .06, my + R * .05, R * .07, R * .045, 0, 0, TAU); c.fill();
+      c.beginPath(); c.ellipse(mx - R * .05, my, R * .12, R * .11, 0, 0, TAU); c.stroke();
+    } else {
+      c.beginPath(); c.arc(mx - R * .15, my - R * .1, R * .17, .3, 1.45); c.stroke();
+    }
+  }
+
+  const PHRASES = [
+    'Привет! Я проведу вас по сайту',
+    'Здесь плавают с первых дней жизни',
+    'После плавания можно в сауну, она входит в занятие',
+    'Загляните в наш фотоальбом!',
+    'Не забудьте справки и шапочку!',
+    'Ждём вас на Ломоносова, 38'
+  ];
+  // Where the guide rests on each slide: fractions of the viewport (wide, narrow)
+  const SPOTS = [
+    [[.62, .86], [.8, .2]],
+    [[.82, .2], [.82, .16]],
+    [[.82, .26], [.82, .16]],
+    [[.82, .2], [.82, .14]],
+    [[.8, .3], [.82, .16]],
+    [[.48, .2], [.82, .16]]
+  ];
+  const guide = {
+    x: W * .2, y: H * .9, vx: 0, vy: 0, face: 1, tilt: 0, phase: 0, len: 0,
+    blink: 0, blinkT: 2, mouth: 0, spin: 0, talkT: 0, bubbleT: 1, curious: 0
+  };
+  const talk = document.getElementById('talk');
+  let current = 0;
+
+  function guideTarget(t) {
+    const narrow = W < 760;
+    const [fx, fy] = SPOTS[current][narrow ? 1 : 0];
+    let tx = W * fx + Math.sin(t * .7) * (narrow ? 18 : 46);
+    let ty = H * fy + Math.sin(t * 1.15) * (narrow ? 10 : 22);
+    if (ptr.active) {
+      const d = Math.hypot(ptr.x - guide.x, ptr.y - guide.y);
+      guide.curious = d < 260 ? Math.min(1, guide.curious + .03) : Math.max(0, guide.curious - .02);
+      tx += (ptr.x - 70 * Math.sign(ptr.x - guide.x || 1) - tx) * guide.curious * .55;
+      ty += (ptr.y - ty) * guide.curious * .55;
+    }
+    return [tx, ty];
+  }
+
+  function updateGuide(dt, t) {
+    guide.len = clamp(W * .1, 90, 130);
+    const [tx, ty] = guideTarget(t);
+    const dx = tx - guide.x, dy = ty - guide.y;
+    const dist = Math.hypot(dx, dy);
+    const want = Math.min(620, dist * 2.4);
+    const dvx = dist ? dx / dist * want : 0, dvy = dist ? dy / dist * want : 0;
+    const k = Math.min(1, dt * 3.2);
+    guide.vx += (dvx - guide.vx) * k; guide.vy += (dvy - guide.vy) * k;
+    guide.x += guide.vx * dt; guide.y += guide.vy * dt;
+    if (Math.abs(guide.vx) > 14) guide.face += (Math.sign(guide.vx) - guide.face) * Math.min(1, dt * 6);
+    const tilt = clamp(Math.atan2(guide.vy, Math.abs(guide.vx) + 80), -.55, .55);
+    guide.tilt += (tilt - guide.tilt) * Math.min(1, dt * 5);
+    const speed = Math.hypot(guide.vx, guide.vy);
+    guide.phase += dt * (5 + speed * .03);
+    guide.blinkT -= dt;
+    if (guide.blinkT <= 0) { guide.blink = 1; guide.blinkT = rnd(2.2, 5); }
+    guide.blink = Math.max(0, guide.blink - dt * 7);
+    guide.spin = Math.max(0, guide.spin - dt * 1.6);
+    guide.talkT -= dt;
+    guide.mouth = guide.talkT > 0 ? (Math.sin(t * 14) > 0 ? 1 : 0) : 0;
+    guide.bubbleT -= dt;
+    const R = guide.len * .36;
+    if (guide.bubbleT <= 0) {
+      guide.bubbleT = speed > 200 ? .12 : rnd(1.2, 2.6);
+      bubble(guide.x + guide.face * R * .9, guide.y + R * .05, rnd(2, speed > 200 ? 4 : 6));
+    }
+    const bx = clamp(guide.x + (guide.face >= 0 ? R * .6 : -R * .6 - talk.offsetWidth), 12, W - talk.offsetWidth - 12);
+    const by = clamp(guide.y - R * 1.6 - talk.offsetHeight, 70, H - talk.offsetHeight - 12);
+    talk.style.transform = `translate(${bx}px, ${by}px)`;
+    talk.classList.toggle('show', guide.talkT > 0 && dist < 160);
+  }
+
+  function drawGuideFrame() {
+    bctx.clearRect(0, 0, W, H);
+    const R = guide.len * .36;
+    // warm glow near the surface, a cool lantern glow at night
+    const gw = Z.glow;
+    const glow = bctx.createRadialGradient(guide.x, guide.y, R * .4, guide.x, guide.y, R * (2.4 + gw * 1.2));
+    glow.addColorStop(0, `rgba(${lerp(255, 140, gw) | 0},${lerp(236, 240, gw) | 0},${lerp(170, 255, gw) | 0},${.28 + gw * .22})`);
+    glow.addColorStop(1, 'rgba(255,236,170,0)');
+    bctx.fillStyle = glow; bctx.beginPath(); bctx.arc(guide.x, guide.y, R * (2.4 + gw * 1.2), 0, TAU); bctx.fill();
+    let lx = 1, ly = 0;
+    if (ptr.active) {
+      const dx = ptr.x - guide.x, dy = ptr.y - guide.y, d = Math.hypot(dx, dy) || 1;
+      lx = dx / d * Math.sign(guide.face || 1); ly = dy / d;
+    }
+    bctx.save();
+    bctx.translate(guide.x, guide.y);
+    const spin = guide.spin > 0 ? Math.cos((1 - guide.spin) * TAU * 2) : 1;
+    bctx.scale((Math.abs(guide.face) < .08 ? .08 * Math.sign(guide.face || 1) : guide.face) * spin, 1);
+    bctx.rotate(guide.tilt);
+    drawGuide(bctx, R, guide.phase, guide.blink, guide.mouth > .5, lx, ly);
+    bctx.restore();
+    if (guide.curious > .2) {
+      bctx.strokeStyle = `rgba(255,255,255,${.25 * guide.curious})`; bctx.lineWidth = 2;
+      bctx.beginPath(); bctx.ellipse(guide.x, guide.y + R * 1.2, R * 1.1, R * .25, 0, 0, TAU); bctx.stroke();
+    }
+  }
+
+  function say(i, text) {
+    talk.textContent = text || PHRASES[i];
+    guide.talkT = 3.6;
+  }
+
+  /* ---------- a few small fish in the background ---------- */
+  const smallFish = [
+    ...Array.from({ length: 3 }, () => makeSwimmer('neon', 0, W * rnd(.2, .8), H * rnd(.3, .8), 40, 75)),
+    makeSwimmer('gold', 0, W * rnd(.2, .8), H * rnd(.3, .8), 30, 60),
+    makeSwimmer('clown', 0, W * rnd(.2, .8), H * rnd(.3, .8), 30, 60)
+  ];
+  function sizeFish() { const n = W < 760; smallFish.forEach(f => { f.L = n ? 26 : 34; }); }
+  sizeFish();
+
+  function render(t, sy) {
+    drawWater(t, sy);
+    ctx.clearRect(0, 0, W, H);
+    if (!gl) {
+      const g = ctx.createLinearGradient(0, 0, 0, H), a = WATER_TOP, b = WATER_BOT;
+      g.addColorStop(0, `rgb(${a.map(Math.round)})`); g.addColorStop(1, `rgb(${b.map(Math.round)})`);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+    for (const s of snow) { ctx.fillStyle = `rgba(235,250,255,${s.a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, TAU); ctx.fill(); }
+    ctx.save(); ctx.globalAlpha = .85;
+    for (const f of smallFish) drawTopFish(ctx, f.x, f.y, f.ang, f.L, f.k, f.ph, f.bend, f.seed, .6);
+    ctx.restore();
+    ctx.lineWidth = 1;
+    for (const b of bubbles) {
+      ctx.strokeStyle = 'rgba(220,250,255,.55)'; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, TAU); ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.beginPath(); ctx.arc(b.x - b.r * .35, b.y - b.r * .35, b.r * .25, 0, TAU); ctx.fill();
+    }
+  }
+
+  let last = performance.now(), lastSy = scrollY, bubbleClock = 1;
+  function frame(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const sy = scrollY, sdy = sy - lastSy; lastSy = sy;
+    const t = now / 1000;
+    for (const s of snow) {
+      s.y += (6 + s.z * 8) * dt - sdy * s.z; s.x += Math.sin(t * .4 + s.s) * 4 * dt;
+      if (s.y > H + 4) { s.y = -4; s.x = rnd(0, W); } if (s.y < -4) { s.y = H + 4; s.x = rnd(0, W); }
+    }
+    bubbleClock -= dt;
+    if (bubbleClock <= 0) { bubbleClock = rnd(.8, 1.8); bubble(W * [.12, .47, .86][Math.floor(Math.random() * 3)] + rnd(-12, 12), H + 10); }
+    for (const b of bubbles) { b.y -= b.vy * dt + sdy * .5; b.x += Math.sin(t * 3 + b.s) * 16 * dt; }
+    for (let i = bubbles.length - 1; i >= 0; i--) if (bubbles[i].y < -20 || bubbles[i].y > H + 60) bubbles.splice(i, 1);
+    steer(smallFish, dt, { x0: 0, x1: W, y0: 70, y1: H }, { wander: 30, sepR: 40, sep: 3, viewR: 120, align: .6, coh: .2 });
+    updateGuide(dt, t);
+    render(now, sy);
+    drawGuideFrame();
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- pages and the entrance animation ---------- */
+  const slides = [...document.querySelectorAll('.slide')];
+  const dots = document.getElementById('dots');
+  slides.forEach(sl => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    b.type = 'button'; b.innerHTML = `<span>${sl.dataset.label}</span>`; b.setAttribute('aria-label', sl.dataset.label);
+    b.addEventListener('click', () => sl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }));
+    li.appendChild(b); dots.appendChild(li);
+  });
+  const dotBtns = [...dots.querySelectorAll('button')];
+  let shown = -1;
+  function activate(i) {
+    if (i === shown) return;
+    shown = i; current = i;
+    dotBtns.forEach((b, k) => b.setAttribute('aria-current', k === i ? 'true' : 'false'));
+    if (!reduce) setTimeout(() => { if (current === i) say(i); }, 700);
+  }
+  const centerObs = new IntersectionObserver(es => { for (const e of es) if (e.isIntersecting) activate(slides.indexOf(e.target)); },
+    { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+  slides.forEach(s => centerObs.observe(s));
+  const revealObs = new IntersectionObserver(es => {
+    for (const e of es) { if (e.isIntersecting) e.target.classList.add('in'); else if (e.intersectionRatio === 0) e.target.classList.remove('in'); }
+  }, { threshold: [0, .12] });
+  slides.forEach(s => revealObs.observe(s));
+  slides[0].classList.add('in');
+  if (reduce) addEventListener('scroll', () => requestAnimationFrame(still), { passive: true });
+
+  /* ---------- pointer ---------- */
+  addEventListener('pointermove', e => { ptr.x = e.clientX; ptr.y = e.clientY; ptr.active = true; }, { passive: true });
+  addEventListener('pointerdown', e => {
+    ptr.x = e.clientX; ptr.y = e.clientY; ptr.active = true;
+    if (reduce) return;
+    for (let k = 0; k < 7; k++) bubble(e.clientX + rnd(-12, 12), e.clientY + rnd(-6, 6), rnd(1.5, 4.5));
+    const R = guide.len * .36;
+    if (Math.hypot(e.clientX - guide.x, e.clientY - guide.y) < R * 1.4) { guide.spin = 1; say(0, 'Хи-хи, щекотно!'); guide.talkT = 2.4; }
+  }, { passive: true });
+  const off = () => { ptr.active = false; };
+  document.addEventListener('pointerleave', off);
+  addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') off(); });
+  addEventListener('blur', off);
+  addEventListener('resize', () => { resize(); sizeFish(); if (reduce) still(); });
+
+  function still() {
+    const narrow = W < 760, [fx, fy] = SPOTS[current][narrow ? 1 : 0];
+    guide.len = clamp(W * .1, 90, 130); guide.x = W * fx; guide.y = H * fy;
+    render(0, scrollY); drawGuideFrame();
+  }
+  if (reduce) still();
+  else {
+    setTimeout(() => say(0), 1200);
+    requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); });
+  }
+
+  /* ---------- photo album ---------- */
+  const tabs = [...document.querySelectorAll('.tab')];
+  function selectTab(tab) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      if (on && !reduce) {
+        panel.classList.remove('pop'); void panel.offsetWidth; panel.classList.add('pop');
+        clearTimeout(panel._pop); panel._pop = setTimeout(() => panel.classList.remove('pop'), 1100);
+      }
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+
+  const photos = [...document.querySelectorAll('.ph')].map(b => ({ btn: b, img: b.querySelector('img'), cap: b.querySelector('.cap').textContent }));
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap'), lbCount = document.getElementById('lbCount');
+  let lbIndex = 0, lbReturn = null;
+  function showPhoto(i, dir) {
+    lbIndex = (i + photos.length) % photos.length;
+    const p = photos[lbIndex];
+    lbImg.src = p.img.getAttribute('src'); lbImg.alt = p.img.alt;
+    lbCap.textContent = p.cap;
+    lbCount.textContent = `${lbIndex + 1} / ${photos.length}`;
+    if (dir && !reduce && lbImg.animate) {
+      lbImg.animate([{ opacity: 0, transform: `translateX(${dir * 40}px) scale(.97)` }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    }
+  }
+  function openLb(i) {
+    lbReturn = document.activeElement;
+    showPhoto(i);
+    lb.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    document.getElementById('lbClose').focus();
+  }
+  function closeLb() {
+    lb.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (lbReturn) lbReturn.focus();
+  }
+  photos.forEach((p, i) => p.btn.addEventListener('click', () => openLb(i)));
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => showPhoto(lbIndex - 1, -1));
+  document.getElementById('lbNext').addEventListener('click', () => showPhoto(lbIndex + 1, 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', e => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowRight') showPhoto(lbIndex + 1, 1);
+    else if (e.key === 'ArrowLeft') showPhoto(lbIndex - 1, -1);
+    else if (e.key === 'Tab') {
+      const f = [...lb.querySelectorAll('button')];
+      const k = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(k + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+    }
+  });
+  let swipeX = null;
+  lb.addEventListener('pointerdown', e => { swipeX = e.clientX; });
+  lb.addEventListener('pointerup', e => {
+    if (swipeX === null) return;
+    const dx = e.clientX - swipeX; swipeX = null;
+    if (Math.abs(dx) > 50) showPhoto(lbIndex + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+  });
+
+  /* ---------- form ---------- */
+  document.getElementById('lead').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    document.getElementById('status').textContent = `${name || 'Спасибо'}, заявка готова. Это концепт сайта, поэтому она пока никуда не отправляется.`;
+    if (!reduce) { for (let k = 0; k < 16; k++) bubble(rnd(W * .5, W * .95), H + rnd(0, 60), rnd(2, 7)); guide.spin = 1; }
+  });
+})();
+</script>
+
+</body>
+</html>
