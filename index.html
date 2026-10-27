@@ -1218,14 +1218,15 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
       g.addColorStop(0, `rgb(${a.map(Math.round)})`); g.addColorStop(1, `rgb(${b.map(Math.round)})`);
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     }
-    for (const s of snow) { ctx.fillStyle = `rgba(235,250,255,${s.a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, TAU); ctx.fill(); }
+    for (const s of snow) { ctx.fillStyle = `rgba(235,250,255,${s.a * .65})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r * .5, 0, TAU); ctx.fill(); }
     ctx.save(); ctx.globalAlpha = .85;
     for (const f of smallFish) drawTopFish(ctx, f.x, f.y, f.ang, f.L, f.k, f.ph, f.bend, f.seed, .6);
     ctx.restore();
     ctx.lineWidth = 1;
     for (const b of bubbles) {
-      ctx.strokeStyle = 'rgba(220,250,255,.55)'; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, TAU); ctx.stroke();
-      ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.beginPath(); ctx.arc(b.x - b.r * .35, b.y - b.r * .35, b.r * .25, 0, TAU); ctx.fill();
+      const r = b.r * .5;
+      ctx.strokeStyle = 'rgba(220,250,255,.35)'; ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, TAU); ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,.4)'; ctx.beginPath(); ctx.arc(b.x - r * .35, b.y - r * .35, r * .25, 0, TAU); ctx.fill();
     }
   }
 
