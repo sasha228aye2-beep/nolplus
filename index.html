@@ -51,7 +51,7 @@ main { position: relative; z-index: 1; }
 @media (min-width: 900px) { .top .wrap { padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
 .brand .logo { width: 40px; height: 40px; border-radius: 50%; background: var(--sun); color: var(--coral-ink); display: grid; place-items: center; font: 700 16px/1 var(--f-display); box-shadow: 0 4px 14px rgba(0, 40, 100, .3); }
-.brand b { font: 700 18px/1.1 var(--f-display); }
+.brand b { display: block; font: 700 clamp(17px, 4.4vw, 24px)/1.1 var(--f-display); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
 .brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .top-phone { font-weight: 800; color: var(--ink); white-space: nowrap; }
 @media (max-width: 560px) { .top-phone { display: none; } .brand small { display: none; } }
