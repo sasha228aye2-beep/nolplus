@@ -433,6 +433,21 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 </main>
 
 <script>
+/* Always open at the top: browsers otherwise restore the last scroll position on reload. */
+(() => {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  let touched = false;
+  for (const ev of ['wheel', 'touchstart', 'keydown', 'pointerdown']) addEventListener(ev, () => { touched = true; }, { once: true, passive: true });
+  const toTop = () => {
+    if (touched) return;
+    const html = document.documentElement;
+    html.style.scrollBehavior = 'auto'; scrollTo(0, 0); html.style.scrollBehavior = '';
+  };
+  toTop();
+  addEventListener('DOMContentLoaded', toTop);
+  addEventListener('load', toTop);
+  addEventListener('pageshow', e => { if (e.persisted) { touched = false; toTop(); } });
+})();
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const sea = document.getElementById('sea'), ctx = sea.getContext('2d');
