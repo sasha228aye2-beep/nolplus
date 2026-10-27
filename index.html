@@ -195,6 +195,7 @@ textarea { min-height: 84px; resize: vertical; }
 input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.45; color: var(--ink-soft); cursor: pointer; }
 .consent input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; padding: 0; accent-color: var(--sun); cursor: pointer; }
+.consent a, .foot a { color: var(--sun); }
 .status { font-weight: 700; color: var(--sun); min-height: 1.4em; }
 .foot { font-size: 13px; color: var(--ink-soft); font-weight: 700; }
 
@@ -428,11 +429,12 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
         <div class="field"><label for="name">Ваше имя</label><input type="text" id="name" autocomplete="name" required></div>
         <div class="field"><label for="tel">Телефон</label><input type="tel" id="tel" autocomplete="tel" required></div>
         <div class="field"><label for="msg">Возраст ребёнка и удобное время</label><textarea id="msg" placeholder="Например: 8 месяцев, будни после 17:00"></textarea></div>
-        <label class="consent"><input type="checkbox" id="consent" required><span>Я даю согласие на обработку моих персональных данных (имя и телефон) для обратной связи в соответствии с Федеральным законом №&nbsp;152-ФЗ «О персональных данных».</span></label>
+        <label class="consent"><input type="checkbox" id="consent" required><span>Я даю согласие на обработку моих персональных данных (имя и телефон) для обратной связи в соответствии с Федеральным законом №&nbsp;152-ФЗ «О персональных данных» и <a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</span></label>
         <div><button class="btn btn-coral" type="submit">Жду звонка</button></div>
         <p class="status" id="status" aria-live="polite"></p>
       </form>
       <p class="foot">Концепт нового сайта детского бассейна «Ноль Плюс». Сведения и фото взяты с текущего сайта.</p>
+      <p class="foot"><a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a></p>
     </div>
   </section>
 </main>
