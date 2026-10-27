@@ -192,9 +192,9 @@ details ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
 .cinfo dt { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
 .cinfo dd { margin: 0; font-size: 19px; font-weight: 700; }
 .cinfo dd span { display: block; font-size: 15px; font-weight: 700; color: var(--ink-soft); }
-.cinfo-row { display: grid; grid-template-columns: minmax(0, max-content) 160px; justify-content: start; gap: 22px; align-items: start; width: 100%; }
+.cinfo-row { display: grid; grid-template-columns: minmax(0, max-content) minmax(160px, 1fr); gap: 22px; align-items: start; width: 100%; max-width: 560px; }
 @media (max-width: 420px) { .cinfo-row { grid-template-columns: 1fr; } }
-.reviews { min-width: 0; align-self: stretch; display: flex; flex-direction: column; gap: 10px; padding: 12px; margin-block: 14px; border-radius: 20px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.reviews { min-width: 0; align-self: stretch; display: flex; flex-direction: column; gap: 10px; padding: 14px; margin-block: 6px; border-radius: 20px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .rv-title { margin: 0; font: 700 17px/1.2 var(--f-display); }
 .rv-stars { color: var(--sun); letter-spacing: .08em; font-size: 15px; display: block; margin-bottom: 4px; }
 .rv-links { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 10px; }
