@@ -1649,7 +1649,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     if (!agreed) { note.classList.add('warn'); showPd(); pd.classList.remove('nudge'); void pd.offsetWidth; pd.classList.add('nudge'); return; }
     const name = document.getElementById('name').value.trim();
     if (window.ym) ym(113937782, 'reachGoal', 'lead_form');
-    document.getElementById('status').textContent = `${name || 'Спасибо'}, заявка готова. Это концепт сайта, поэтому она пока никуда не отправляется.`;
+    document.getElementById('status').innerHTML = `${name ? name.replace(/[<>&]/g, '') + ', с' : 'С'}пасибо! Заявки с сайта мы пока не принимаем. Позвоните нам, пожалуйста: <a href="tel:+73432010038">+7 (343) 20 100 38</a>.`;
     if (!reduce) { for (let k = 0; k < 16; k++) bubble(rnd(W * .5, W * .95), H + rnd(0, 60), rnd(2, 7)); guide.spin = 1; }
   });
 })();
