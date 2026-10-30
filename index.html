@@ -251,15 +251,33 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 /* Section menu: always on screen, right edge, vertically centred */
 .rail { position: fixed; z-index: 4; right: calc(env(safe-area-inset-right, 0px) + 14px); top: 50%; transform: translateY(-50%); display: block; padding: 14px 14px 14px 16px; border-radius: 20px; background: rgba(0, 60, 140, .38); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .rail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; justify-items: end; }
-.rail button span { transition: color .2s; }
+.rail li button span { transition: color .2s; }
 @media (min-width: 600px) and (max-width: 899px) { .slide > .wrap { padding-right: max(150px, env(safe-area-inset-right, 0px)); } }
-@media (max-width: 599px) { .rail { padding: 10px 8px; right: calc(env(safe-area-inset-right, 0px) + 6px); } .rail ul { gap: 14px; } .rail button span { display: none; } .slide > .wrap { padding-right: max(50px, env(safe-area-inset-right, 0px)); } }
-.rail button { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 2px 0; color: var(--ink); font: 800 14px/1 var(--f-body); cursor: pointer; text-shadow: 0 1px 8px rgba(0, 40, 100, .5); }
-.rail button::after { content: ""; flex: none; width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, .8); box-shadow: 0 1px 6px rgba(0, 40, 100, .35); transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background-color .2s; }
-.rail button:hover::after, .rail button:focus-visible::after { background: #ffffff; transform: scale(1.2); }
-.rail button:hover span, .rail button:focus-visible span { color: var(--sun); }
-.rail button[aria-current="true"] { color: var(--sun); }
-.rail button[aria-current="true"]::after { background: var(--sun); transform: scale(1.35); }
+.rail-toggle { display: none; }
+/* Phones: the section menu folds into one round button so the text gets the full width */
+@media (max-width: 599px) {
+  .rail { right: calc(env(safe-area-inset-right, 0px) + 10px); padding: 0; background: none; border: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .rail-toggle { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(0, 60, 140, .6); color: var(--ink); font: 800 20px/1 var(--f-body); cursor: pointer; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 8px 20px rgba(0, 40, 100, .3); }
+  .rail.open .rail-toggle { background: var(--sun); color: var(--coral-ink); border-color: var(--sun); }
+  .rail ul { display: none; position: absolute; right: 54px; top: 50%; transform: translateY(-50%); gap: 14px; padding: 14px 16px; border-radius: 20px; white-space: nowrap; background: rgba(0, 60, 140, .9); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 14px 34px rgba(0, 30, 70, .4); }
+  .rail.open ul { display: grid; }
+  .rail li button { font-size: 15px; }
+  body { font-size: 16px; }
+  h1 { font-size: 38px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 20px; }
+  .lead { font-size: 16px; }
+  .quote { font-size: 19px; }
+  .slide > .wrap { gap: 24px; }
+  .card { padding: 18px; }
+  .ticks li { padding: 12px 14px; }
+}
+.rail li button { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 2px 0; color: var(--ink); font: 800 14px/1 var(--f-body); cursor: pointer; text-shadow: 0 1px 8px rgba(0, 40, 100, .5); }
+.rail li button::after { content: ""; flex: none; width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, .8); box-shadow: 0 1px 6px rgba(0, 40, 100, .35); transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background-color .2s; }
+.rail li button:hover::after, .rail li button:focus-visible::after { background: #ffffff; transform: scale(1.2); }
+.rail li button:hover span, .rail li button:focus-visible span { color: var(--sun); }
+.rail li button[aria-current="true"] { color: var(--sun); }
+.rail li button[aria-current="true"]::after { background: var(--sun); transform: scale(1.35); }
 
 /* Guide fish speech bubble */
 .talk { position: fixed; z-index: 4; left: 0; top: 0; max-width: min(240px, 60vw); padding: 10px 14px; border-radius: 18px 18px 18px 6px; background: #ffffff; color: #0a4f9a; font: 700 14px/1.35 var(--f-body); box-shadow: 0 10px 30px rgba(0, 40, 100, .3); pointer-events: none; opacity: 0; transition: opacity .3s; }
@@ -303,7 +321,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
   </div>
 </header>
 
-<nav class="rail" aria-label="Разделы"><ul id="dots"></ul></nav>
+<nav class="rail" aria-label="Разделы"><button class="rail-toggle" type="button" aria-expanded="false" aria-controls="dots" aria-label="Разделы сайта">☰</button><ul id="dots"></ul></nav>
 
 <div class="lightbox" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото" hidden>
   <span class="lb-count" id="lbCount"></span>
@@ -1243,7 +1261,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
   }
 
   function updateGuide(dt, t) {
-    guide.len = clamp(W * .1, 90, 130);
+    guide.len = clamp(W * .1, W < 600 ? 68 : 90, 130);
     const [tx, ty] = guideTarget(t);
     const dx = tx - guide.x, dy = ty - guide.y;
     const dist = Math.hypot(dx, dy);
@@ -1366,6 +1384,11 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     li.appendChild(b); dots.appendChild(li);
   });
   const dotBtns = [...dots.querySelectorAll('button')];
+  const rail = document.querySelector('.rail'), railToggle = rail.querySelector('.rail-toggle');
+  function setRail(open) { rail.classList.toggle('open', open); railToggle.setAttribute('aria-expanded', String(open)); }
+  railToggle.addEventListener('click', () => setRail(!rail.classList.contains('open')));
+  dotBtns.forEach(b => b.addEventListener('click', () => setRail(false)));
+  document.addEventListener('click', e => { if (!rail.contains(e.target)) setRail(false); });
   let shown = -1;
   function activate(i) {
     if (i === shown) return;
@@ -1400,7 +1423,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 
   function still() {
     const narrow = W < 760, [fx, fy] = SPOTS[current][narrow ? 1 : 0];
-    guide.len = clamp(W * .1, 90, 130); guide.x = W * fx; guide.y = H * fy;
+    guide.len = clamp(W * .1, W < 600 ? 68 : 90, 130); guide.x = W * fx; guide.y = H * fy;
     render(0, scrollY); drawGuideFrame();
   }
   if (reduce) still();
