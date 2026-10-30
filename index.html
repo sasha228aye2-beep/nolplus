@@ -17,6 +17,9 @@
 <!-- /Yandex.Metrika counter -->
 <meta name="description" content="Детский бассейн «Ноль Плюс» на Уралмаше, Екатеринбург: плавание для детей от 1 месяца до 9 лет, грудничковое плавание. Ломоносова, 38.">
 <title>Детский бассейн «Ноль Плюс» на Уралмаше — Екатеринбург, Ломоносова, 38</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://nolplus-ekb.ru/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -74,7 +77,8 @@ main { position: relative; z-index: 1; }
 .brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .top .btn { flex: none; white-space: nowrap; }
 @media (max-width: 400px) { .top .wrap { gap: 10px; } .brand { gap: 8px; } .brand b { font-size: 15px; letter-spacing: .02em; } .top .btn { padding-inline: 12px; } }
-.top-phone { font-weight: 800; color: var(--ink); white-space: nowrap; }
+.top-phone { font-weight: 800; color: var(--ink); white-space: nowrap; text-decoration: none; }
+.cinfo a[href^="tel:"] { color: inherit; text-decoration: none; }
 @media (max-width: 560px) { .top-phone { display: none; } .brand small { display: none; } }
 
 /* Buttons */
@@ -411,7 +415,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top"><span><b>Ноль Плюс</b><small>детский бассейн · Екатеринбург</small></span></a>
-    <span class="top-phone">+7 (343) 20 100 38</span>
+    <a class="top-phone" href="tel:+73432010038">+7 (343) 20 100 38</a>
     <a class="btn btn-coral btn-sm" href="#contact">Заказать звонок</a>
   </div>
 </header>
@@ -604,7 +608,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
         <h2 class="reveal" style="--d:1">Ждём вас <span class="hl">на Уралмаше, Ломоносова, 38</span></h2>
         <div class="cinfo-row">
         <dl class="cinfo reveal" style="--d:2">
-          <div><dt>Телефоны</dt><dd>+7 (343) 20 100 38<span>+7 (953) 05 100 38, также в MAX</span></dd></div>
+          <div><dt>Телефоны</dt><dd><a href="tel:+73432010038">+7 (343) 20 100 38</a><span><a href="tel:+79530510038">+7 (953) 05 100 38</a>, также в MAX</span></dd></div>
           <div><dt>Адрес</dt><dd>г. Екатеринбург, Уралмаш,<br>ул. Ломоносова, 38<span>Пересечение с ул. Победы. Рядом парковка.</span></dd></div>
           <div><dt>Режим работы</dt><dd>Ежедневно, 08:00–22:00<span>По предварительной записи</span></dd></div>
           <div><dt>Почта</dt><dd>spresent@ya.ru</dd></div>
@@ -1644,6 +1648,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     e.preventDefault();
     if (!agreed) { note.classList.add('warn'); showPd(); pd.classList.remove('nudge'); void pd.offsetWidth; pd.classList.add('nudge'); return; }
     const name = document.getElementById('name').value.trim();
+    if (window.ym) ym(113937782, 'reachGoal', 'lead_form');
     document.getElementById('status').textContent = `${name || 'Спасибо'}, заявка готова. Это концепт сайта, поэтому она пока никуда не отправляется.`;
     if (!reduce) { for (let k = 0; k < 16; k++) bubble(rnd(W * .5, W * .95), H + rnd(0, 60), rnd(2, 7)); guide.spin = 1; }
   });
