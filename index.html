@@ -103,6 +103,12 @@ html { scroll-padding-top: 74px; }
 .slide:not(#top) { align-items: flex-start; padding-top: 28px; min-height: calc(100svh - 74px); }
 .soon { max-width: 560px; padding: 26px 28px; border-radius: 24px; background: var(--glass); border: 1px dashed var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .soon p { margin: 0; font-weight: 700; color: var(--ink-soft); }
+.offer { max-width: 560px; padding: 26px 28px; border-radius: 24px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.offer .price { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 0 0 10px; font: 700 clamp(20px, 4.6vw, 26px)/1.25 var(--f-display); }
+.offer .price b { color: var(--sun); white-space: nowrap; }
+.offer .gift { margin: 0 0 14px; font-weight: 800; color: var(--sun); }
+.offer .note { margin: 0 0 20px; color: var(--ink-soft); }
+.offer .note a { color: var(--sun); white-space: nowrap; }
 .eyebrow { margin: 0; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--sun); }
 h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 40, 100, .35); }
 h1 { font-size: clamp(42px, 7.4vw, 94px); line-height: 1.02; letter-spacing: -.02em; max-width: 13ch; }
@@ -526,7 +532,12 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
         <p class="eyebrow reveal">Стоимость занятий</p>
         <h2 class="reveal" style="--d:1">Цены</h2>
       </div>
-      <div class="soon reveal" style="--d:2"><p>Раздел готовится. Скоро здесь появятся цены на занятия.</p></div>
+      <div class="offer reveal" style="--d:2">
+        <p class="price"><span>Пробное занятие</span><b>550 ₽</b></p>
+        <p class="gift">+ профессиональная фотосессия в подарок</p>
+        <p class="note">Стоимость абонементов уточняйте у администратора по телефону <a href="tel:+73432010038">+7 (343) 20 100 38</a>.</p>
+        <a class="btn btn-coral" href="#contact">Записаться на пробное</a>
+      </div>
     </div>
     <div class="rope" aria-hidden="true"></div>
   </section>
@@ -537,7 +548,11 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
         <p class="eyebrow reveal">Акции и новости</p>
         <h2 class="reveal" style="--d:1">Акции</h2>
       </div>
-      <div class="soon reveal" style="--d:2"><p>Раздел готовится. Скоро здесь появятся акции и специальные предложения.</p></div>
+      <div class="offer reveal" style="--d:2">
+        <p class="price"><span>Фотосессия в подарок</span></p>
+        <p class="note">Запишитесь на пробное занятие за 550 ₽ и получите профессиональную фотосессию бесплатно.</p>
+        <a class="btn btn-coral" href="#contact">Записаться на пробное</a>
+      </div>
     </div>
     <div class="rope" aria-hidden="true"></div>
   </section>
@@ -1321,8 +1336,8 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     'Привет! Я проведу вас по сайту',
     'Здесь плавают с 1 месяца',
     'После плавания можно в сауну, она входит в занятие',
-    'Цены скоро появятся здесь',
-    'Следите за акциями!',
+    'Пробное занятие всего 550 ₽',
+    'Фотосессия в подарок к пробному!',
     'Загляните в наш фотоальбом!',
     'Не забудьте справки и шапочку!',
     'Ждём вас на Уралмаше, Ломоносова, 38'
