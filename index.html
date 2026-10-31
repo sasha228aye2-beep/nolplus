@@ -235,8 +235,9 @@ details ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
 .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 .map-cta { position: absolute; left: 12px; bottom: 12px; background: var(--coral); color: var(--coral-ink); font: 800 14px/1 var(--f-body); padding: 10px 16px; border-radius: 999px; box-shadow: 0 8px 20px rgba(0, 40, 100, .3); transition: transform .3s cubic-bezier(.3, 1.6, .5, 1); }
 .map:hover .map-cta, .map:focus-visible .map-cta { transform: scale(1.06); }
-form { display: grid; gap: 14px; padding: 26px; border-radius: 26px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); min-width: 0; }
-form h3 { font-size: 26px; }
+.lead { display: grid; gap: 14px; padding: 26px; border-radius: 26px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); min-width: 0; }
+.lead h3 { font-size: 26px; }
+.ya-form { width: 100%; min-height: 560px; border: 0; border-radius: 18px; background: #fff; }
 .field { display: grid; gap: 6px; min-width: 0; }
 .field label { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
 input, textarea { width: 100%; font: 600 16px/1.4 var(--f-body); color: var(--ink); background: rgba(255, 255, 255, .14); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
@@ -642,16 +643,12 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
           <span class="map-cta">Построить маршрут →</span>
         </a>
       </div>
-      <form id="lead" class="reveal" style="--d:3">
+      <div id="lead" class="lead reveal" style="--d:3">
         <h3>Заказать звонок</h3>
         <p class="foot">Перезвоним в течение рабочего дня и всё расскажем.</p>
-        <div class="field"><label for="name">Ваше имя</label><input type="text" id="name" autocomplete="name" required></div>
-        <div class="field"><label for="tel">Телефон</label><input type="tel" id="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="msg">Возраст ребёнка и удобное время</label><textarea id="msg" placeholder="Например: 8 месяцев, будни после 17:00"></textarea></div>
-        <p class="consent-note" id="consentNote"></p>
-        <div><button class="btn btn-coral" type="submit">Жду звонка</button></div>
-        <p class="status" id="status" aria-live="polite"></p>
-      </form>
+        <iframe class="ya-form" src="https://forms.yandex.ru/u/6ae5be57c45c0727315db9dc?iframe=1" frameborder="0" name="ya-form-6ae5be57c45c0727315db9dc" title="Заявка на пробное занятие" loading="lazy"></iframe>
+        <p class="consent-note">Не открывается форма? Позвоните: <a href="tel:+73432010038">+7 (343) 20 100 38</a>.</p>
+      </div>
       <p class="foot"><a href="plavanie-dlya-detey.html">Плавание для детей</a> · <a href="grudnichkovoe-plavanie.html">Грудничковое плавание</a> · <a href="s-kakogo-vozrasta-v-bassein.html">С какого возраста в бассейн</a> · <a href="spravki.html">Справки для бассейна</a> · <a href="voprosy.html">Вопросы и ответы</a></p>
       <p class="foot"><a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a></p>
     </div>
@@ -1624,13 +1621,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 
   /* ---------- personal data policy panel: the request is sent only after "Согласиться" ---------- */
   const pd = document.getElementById('pd'), pdBody = document.getElementById('pdBody'), pdMore = document.getElementById('pdMore');
-  const note = document.getElementById('consentNote');
-  const policyLink = '<a href="privacy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>';
-  let agreed = false, policyLoaded = false;
-  function showNote() {
-    note.classList.remove('warn');
-    note.innerHTML = agreed ? `✓ Вы согласились с ${policyLink}.` : `Чтобы отправить заявку, нажмите «Согласиться» в окошке «<a href="privacy.html" target="_blank" rel="noopener">Политика обработки персональных данных</a>» внизу экрана.`;
-  }
+  let policyLoaded = false;
   function showPd() { pd.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => pd.classList.add('up'))); }
   pdMore.addEventListener('click', async () => {
     const open = pdBody.hidden;
@@ -1650,25 +1641,21 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
     }
   });
   document.getElementById('pdAgree').addEventListener('click', () => {
-    agreed = true;
-    showNote();
     pd.classList.remove('up', 'nudge');
     setTimeout(() => { pd.hidden = true; }, reduce ? 0 : 500);
   });
-  showNote();
   setTimeout(showPd, reduce ? 0 : 1500);
 
-  /* ---------- form ---------- */
-  document.getElementById('lead').addEventListener('submit', e => {
-    e.preventDefault();
-    if (!agreed) { note.classList.add('warn'); showPd(); pd.classList.remove('nudge'); void pd.offsetWidth; pd.classList.add('nudge'); return; }
-    const name = document.getElementById('name').value.trim();
+  /* ---------- form: Yandex Forms iframe; the goal fires when it reports a sent answer ---------- */
+  addEventListener('message', e => {
+    if (e.origin !== 'https://forms.yandex.ru') return;
+    if (!/submit|sent|answer/i.test(typeof e.data === 'string' ? e.data : JSON.stringify(e.data))) return;
     if (window.ym) ym(113937782, 'reachGoal', 'lead_form');
-    document.getElementById('status').innerHTML = `${name ? name.replace(/[<>&]/g, '') + ', с' : 'С'}пасибо! Заявки с сайта мы пока не принимаем. Позвоните нам, пожалуйста: <a href="tel:+73432010038">+7 (343) 20 100 38</a>.`;
     if (!reduce) { for (let k = 0; k < 16; k++) bubble(rnd(W * .5, W * .95), H + rnd(0, 60), rnd(2, 7)); guide.spin = 1; }
   });
 })();
 </script>
 
+<script src="https://forms.yandex.ru/_static/embed.js"></script>
 </body>
 </html>
