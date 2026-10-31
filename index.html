@@ -72,13 +72,13 @@ main { position: relative; z-index: 1; }
 .top { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 5; background: linear-gradient(to bottom, rgba(0, 60, 140, .62), rgba(0, 60, 140, 0)); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; max-width: none; }
 @media (min-width: 900px) { .top .wrap { padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
-.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); text-decoration: none; }
 .brand b { display: block; font: 700 clamp(17px, 4.4vw, 24px)/1.1 var(--f-display); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
 .brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
 .top .btn { flex: none; white-space: nowrap; }
 @media (max-width: 400px) { .top .wrap { gap: 10px; } .brand { gap: 8px; } .brand b { font-size: 15px; letter-spacing: .02em; } .top .btn { padding-inline: 12px; } }
 .top-phone { font-weight: 800; color: var(--ink); white-space: nowrap; text-decoration: none; }
-.cinfo a[href^="tel:"] { color: inherit; text-decoration: none; }
+.cinfo a[href^="tel:"] { color: inherit; text-decoration: none; display: inline-block; padding: 4px 0; }
 @media (max-width: 560px) { .top-phone { display: none; } .brand small { display: none; } }
 
 /* Buttons */
@@ -237,7 +237,7 @@ details ul { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
 .map:hover .map-cta, .map:focus-visible .map-cta { transform: scale(1.06); }
 .lead { display: grid; gap: 14px; padding: 26px; border-radius: 26px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); min-width: 0; }
 .lead h3 { font-size: 26px; }
-.ya-form { width: 100%; min-height: 560px; border: 0; border-radius: 18px; background: #fff; }
+.ya-form { width: 100%; height: 560px; border: 0; border-radius: 18px; background: #fff; }
 .field { display: grid; gap: 6px; min-width: 0; }
 .field label { font-size: 14px; font-weight: 700; color: var(--ink-soft); }
 input, textarea { width: 100%; font: 600 16px/1.4 var(--f-body); color: var(--ink); background: rgba(255, 255, 255, .14); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
@@ -246,6 +246,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
 .consent-note { margin: 0; font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
 .consent-note.warn { color: var(--sun); font-weight: 800; }
 .consent-note a, .foot a { color: var(--sun); }
+.foot a { display: inline-block; padding: 4px 0; line-height: 1.4; }
 
 /* Personal data policy: a small panel at the bottom that never blocks scrolling */
 .pd {
@@ -457,7 +458,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
       </div>
       <figure class="buoy-wrap reveal" style="--d:3">
         <div class="buoy">
-          <img src="photos/pool-1.jpg" alt="Малышка в розовой шапочке смеётся в бассейне, инструктор поддерживает её" width="1000" height="706" fetchpriority="high">
+          <img src="photos/pool-1.webp" alt="Малышка в розовой шапочке смеётся в бассейне, инструктор поддерживает её" width="1000" height="706" fetchpriority="high">
           <span class="buoy-tag">Это наш бассейн</span>
         </div>
       </figure>
@@ -576,24 +577,24 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
       </div>
       <div class="reveal" style="--d:4">
         <div class="album-grid" id="g-pool" role="tabpanel" aria-labelledby="tab-pool">
-          <button class="ph" type="button"><img src="photos/pool-3.jpg" alt="Малышка в шапочке брызгается и смеётся на занятии" loading="lazy"><span class="cap">Брызги и смех на занятии</span></button>
-          <button class="ph" type="button"><img src="photos/pool-1.jpg" alt="Малышка в розовой шапочке плавает с инструктором" loading="lazy"><span class="cap">Плаваем с инструктором</span></button>
-          <button class="ph" type="button"><img src="photos/pool-2.jpg" alt="Мальчик в очках плавает с гантелями-поплавками" loading="lazy"><span class="cap">С гантелями-поплавками</span></button>
+          <button class="ph" type="button"><img src="photos/pool-3.webp" alt="Малышка в шапочке брызгается и смеётся на занятии" loading="lazy"><span class="cap">Брызги и смех на занятии</span></button>
+          <button class="ph" type="button"><img src="photos/pool-1.webp" alt="Малышка в розовой шапочке плавает с инструктором" loading="lazy"><span class="cap">Плаваем с инструктором</span></button>
+          <button class="ph" type="button"><img src="photos/pool-2.webp" alt="Мальчик в очках плавает с гантелями-поплавками" loading="lazy"><span class="cap">С гантелями-поплавками</span></button>
         </div>
         <div class="album-grid" id="g-hall" role="tabpanel" aria-labelledby="tab-hall" hidden>
-          <button class="ph" type="button"><img src="photos/hall-1.jpg" alt="Девочка в бассейне на фоне стены с логотипом «Ноль Плюс» и рыбками" loading="lazy"><span class="cap">Стены с подводным миром</span></button>
-          <button class="ph" type="button"><img src="photos/hall-2.jpg" alt="Чаша бассейна с голубой мозаикой и нарисованным скатом" loading="lazy"><span class="cap">Чаша бассейна</span></button>
-          <button class="ph" type="button"><img src="photos/hall-3.jpg" alt="Нарисованная весёлая акула на стене бассейна" loading="lazy"><span class="cap">Акула встречает гостей</span></button>
+          <button class="ph" type="button"><img src="photos/hall-1.webp" alt="Девочка в бассейне на фоне стены с логотипом «Ноль Плюс» и рыбками" loading="lazy"><span class="cap">Стены с подводным миром</span></button>
+          <button class="ph" type="button"><img src="photos/hall-2.webp" alt="Чаша бассейна с голубой мозаикой и нарисованным скатом" loading="lazy"><span class="cap">Чаша бассейна</span></button>
+          <button class="ph" type="button"><img src="photos/hall-3.webp" alt="Нарисованная весёлая акула на стене бассейна" loading="lazy"><span class="cap">Акула встречает гостей</span></button>
         </div>
         <div class="album-grid" id="g-sauna" role="tabpanel" aria-labelledby="tab-sauna" hidden>
-          <button class="ph" type="button"><img src="photos/sauna-2.jpg" alt="Девочка в купальнике отдыхает в деревянной сауне" loading="lazy"><span class="cap">Отдыхаем после плавания</span></button>
-          <button class="ph" type="button"><img src="photos/sauna-1.jpg" alt="Малыш в жёлтом полотенце в сауне" loading="lazy"><span class="cap">Тёплая сауна</span></button>
-          <button class="ph" type="button"><img src="photos/sauna-3.jpg" alt="Малышка сидит на полке сауны в полотенце" loading="lazy"><span class="cap">Греемся в полотенце</span></button>
+          <button class="ph" type="button"><img src="photos/sauna-2.webp" alt="Девочка в купальнике отдыхает в деревянной сауне" loading="lazy"><span class="cap">Отдыхаем после плавания</span></button>
+          <button class="ph" type="button"><img src="photos/sauna-1.webp" alt="Малыш в жёлтом полотенце в сауне" loading="lazy"><span class="cap">Тёплая сауна</span></button>
+          <button class="ph" type="button"><img src="photos/sauna-3.webp" alt="Малышка сидит на полке сауны в полотенце" loading="lazy"><span class="cap">Греемся в полотенце</span></button>
         </div>
         <div class="album-grid" id="g-play" role="tabpanel" aria-labelledby="tab-play" hidden>
-          <button class="ph" type="button"><img src="photos/play-1.jpg" alt="Малыш ползёт по ковру среди пирамидок и игрушек" loading="lazy"><span class="cap">Пирамидки и игрушки</span></button>
-          <button class="ph" type="button"><img src="photos/play-2.jpg" alt="Мама с малышкой на руках в игровой комнате" loading="lazy"><span class="cap">Мама с малышкой</span></button>
-          <button class="ph" type="button"><img src="photos/play-3.jpg" alt="Малышка обнимает разноцветный мяч" loading="lazy"><span class="cap">Любимый мяч</span></button>
+          <button class="ph" type="button"><img src="photos/play-1.webp" alt="Малыш ползёт по ковру среди пирамидок и игрушек" loading="lazy"><span class="cap">Пирамидки и игрушки</span></button>
+          <button class="ph" type="button"><img src="photos/play-2.webp" alt="Мама с малышкой на руках в игровой комнате" loading="lazy"><span class="cap">Мама с малышкой</span></button>
+          <button class="ph" type="button"><img src="photos/play-3.webp" alt="Малышка обнимает разноцветный мяч" loading="lazy"><span class="cap">Любимый мяч</span></button>
         </div>
       </div>
     </div>
@@ -1646,16 +1647,20 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
   });
   setTimeout(showPd, reduce ? 0 : 1500);
 
-  /* ---------- form: Yandex Forms iframe; the goal fires when it reports a sent answer ---------- */
+  /* ---------- form: Yandex Forms iframe reports its height and a sent answer ---------- */
+  const yaForm = document.querySelector('.ya-form');
   addEventListener('message', e => {
     if (e.origin !== 'https://forms.yandex.ru') return;
-    if (!/submit|sent|answer/i.test(typeof e.data === 'string' ? e.data : JSON.stringify(e.data))) return;
+    let d = e.data;
+    try { if (typeof d === 'string') d = JSON.parse(d); } catch (err) { return; }
+    if (!d || d.name !== yaForm.name) return;
+    if (d['iframe-height']) { yaForm.style.height = d['iframe-height'] + 'px'; return; }
+    if (d.message !== 'sent') return;
     if (window.ym) ym(113937782, 'reachGoal', 'lead_form');
     if (!reduce) { for (let k = 0; k < 16; k++) bubble(rnd(W * .5, W * .95), H + rnd(0, 60), rnd(2, 7)); guide.spin = 1; }
   });
 })();
 </script>
 
-<script src="https://forms.yandex.ru/_static/embed.js"></script>
 </body>
 </html>
