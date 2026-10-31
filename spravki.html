@@ -87,6 +87,29 @@ details:first-of-type { border-top: 0; padding-top: 0; }
 summary { cursor: pointer; font: 700 18px/1.4 var(--f-display); color: var(--ink); }
 summary::marker { color: var(--sun); }
 details p { margin: 10px 0 0; }
+
+/* Site header and pool tour, so visitors from search see the pool first */
+.top { position: sticky; top: 0; z-index: 5; background: rgba(10, 111, 194, .82); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1100px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+.brand { display: flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); text-decoration: none; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.brand b { display: block; font: 700 clamp(16px, 4.2vw, 22px)/1.1 var(--f-display); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.brand small { display: block; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+.top-phone { margin-left: auto; font-weight: 800; color: var(--ink); white-space: nowrap; text-decoration: none; }
+.btn-coral { background: var(--coral); color: var(--coral-ink); box-shadow: 0 8px 24px rgba(255, 90, 60, .4); }
+.btn-sm { padding: 10px 16px; font-size: 15px; white-space: nowrap; }
+@media (max-width: 640px) { .top-phone, .brand small { display: none; } }
+@media (max-width: 380px) { .brand img { width: 34px; height: 34px; } .brand b { font-size: 14px; } .btn-sm { padding-inline: 12px; } }
+.tour { margin: 18px 0 28px; }
+.tour-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
+.tour-strip::-webkit-scrollbar { display: none; }
+.tour-strip a { scroll-snap-align: start; position: relative; display: block; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3; border: 2px solid var(--line); }
+.tour-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.tour-strip a:hover img { transform: scale(1.05); }
+.tour-strip span { position: absolute; left: 8px; bottom: 8px; padding: 3px 10px; border-radius: 999px; background: rgba(10, 60, 120, .72); color: var(--ink); font-size: 13px; font-weight: 800; }
+.tour-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-top: 12px; }
+.tour-bar p { margin: 0; color: var(--ink); font-weight: 700; }
+@media (max-width: 560px) { .tour-strip { grid-auto-columns: 72%; } }
 </style>
 <script type="application/ld+json">
 {
@@ -115,9 +138,27 @@ details p { margin: 10px 0 0; }
 </head>
 <body>
 <noscript><div><img src="https://mc.yandex.ru/watch/113937782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><img src="apple-touch-icon.png" alt="" width="40" height="40"><span><b>Ноль Плюс</b><small>детский бассейн · Екатеринбург</small></span></a>
+    <a class="top-phone" href="tel:+73432010038">+7 (343) 20 100 38</a>
+    <a class="btn btn-coral btn-sm" href="./#contact">Записаться</a>
+  </div>
+</header>
 <div class="wrap">
-  <a class="back" href="./">← На главную</a>
   <h1>Какие справки и анализы нужны в детский бассейн</h1>
+  <div class="tour">
+    <div class="tour-strip">
+      <a href="./#photos"><img src="photos/pool-1.webp" alt="Малышка в розовой шапочке плавает с инструктором" width="1000" height="706"><span>Бассейн</span></a>
+      <a href="./#photos"><img src="photos/hall-1.webp" alt="Чаша бассейна с логотипом «Ноль Плюс» на стене" loading="lazy"><span>Зал</span></a>
+      <a href="./#photos"><img src="photos/sauna-1.webp" alt="Малыш в жёлтом полотенце в сауне" loading="lazy"><span>Сауна</span></a>
+      <a href="./#photos"><img src="photos/play-1.webp" alt="Малыш в игровой комнате среди игрушек" loading="lazy"><span>Игровая</span></a>
+    </div>
+    <div class="tour-bar">
+      <p>Детский бассейн на Уралмаше, Ломоносова, 38 · вода +33 °C</p>
+      <a class="btn btn-main" href="./">Посмотреть бассейн →</a>
+    </div>
+  </div>
   <div class="card">
     <p class="lead">Справки нужны, потому что мы заботимся о каждом ребёнке. Когда речь о малышах, безопасность важнее всего.</p>
     <h2>Для ребёнка</h2>
