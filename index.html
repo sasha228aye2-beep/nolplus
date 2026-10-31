@@ -29,7 +29,7 @@
 <meta property="og:title" content="Детский бассейн «Ноль Плюс» на Уралмаше, Екатеринбург">
 <meta property="og:description" content="Плавание для детей от 1 месяца до 9 лет. Уралмаш, Ломоносова, 38.">
 <meta property="og:url" content="https://nolplus-ekb.ru/">
-<meta property="og:image" content="https://nolplus-ekb.ru/photos/pool-1.jpg">
+<meta property="og:image" content="https://nolplus-ekb.ru/photos/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
@@ -197,7 +197,7 @@ p { margin: 0; }
 .album-grid .ph { aspect-ratio: 1; }
 .album-grid .ph:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
 @media (min-width: 820px) {
-  .album-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); height: clamp(340px, 54vh, 540px); }
+  .album-grid { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); height: clamp(340px, 54vh, 540px); }
   .album-grid .ph, .album-grid .ph:first-child { aspect-ratio: auto; }
   .album-grid .ph:first-child { grid-column: auto; grid-row: 1 / span 2; }
 }
@@ -348,7 +348,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
  "name": "Детский бассейн «Ноль Плюс»",
  "description": "Детский бассейн на Уралмаше в Екатеринбурге. Развивающее плавание для детей от 1 месяца до 9 лет. Индивидуальные занятия с инструктором, вода +33 °C, сауна и игровая комната.",
  "url": "https://nolplus-ekb.ru/",
- "image": "https://nolplus-ekb.ru/photos/pool-1.jpg",
+ "image": "https://nolplus-ekb.ru/photos/hero.jpg",
  "telephone": [
   "+7-343-201-00-38",
   "+7-953-051-00-38"
@@ -461,7 +461,7 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
       </div>
       <figure class="buoy-wrap reveal" style="--d:3">
         <div class="buoy">
-          <img src="photos/pool-1.webp" alt="Малышка в розовой шапочке смеётся в бассейне, инструктор поддерживает её" width="1000" height="706" fetchpriority="high">
+          <img src="photos/hero.webp" alt="Малышка в розовой шапочке радостно смеётся в бассейне" width="1000" height="706" fetchpriority="high">
           <span class="buoy-tag">Это наш бассейн</span>
         </div>
       </figure>
@@ -580,24 +580,32 @@ input::placeholder, textarea::placeholder { color: rgba(230, 248, 255, .7); }
       </div>
       <div class="reveal" style="--d:4">
         <div class="album-grid" id="g-pool" role="tabpanel" aria-labelledby="tab-pool">
-          <button class="ph" type="button"><img src="photos/pool-3.webp" alt="Малышка в шапочке брызгается и смеётся на занятии" loading="lazy"><span class="cap">Брызги и смех на занятии</span></button>
-          <button class="ph" type="button"><img src="photos/pool-1.webp" alt="Малышка в розовой шапочке плавает с инструктором" loading="lazy"><span class="cap">Плаваем с инструктором</span></button>
-          <button class="ph" type="button"><img src="photos/pool-2.webp" alt="Мальчик в очках плавает с гантелями-поплавками" loading="lazy"><span class="cap">С гантелями-поплавками</span></button>
+          <button class="ph" type="button"><img src="photos/n-pool-1.webp" alt="Малыш в синей шапочке со смехом плещется в бассейне" loading="lazy"><span class="cap">Брызги и смех</span></button>
+          <button class="ph" type="button"><img src="photos/n-pool-2.webp" alt="Девочка в розовой шапочке и очках весело показывает язык в бассейне" loading="lazy"><span class="cap">Весело в воде</span></button>
+          <button class="ph" type="button"><img src="photos/n-pool-3.webp" alt="Девочка в шапочке и очках играет с розовым мячом в бассейне" loading="lazy"><span class="cap">Играем с мячиком</span></button>
+          <button class="ph" type="button"><img src="photos/n-pool-4.webp" alt="Малыш держит жёлтое колечко в бассейне" loading="lazy"><span class="cap">Колечки для малышей</span></button>
+          <button class="ph" type="button"><img src="photos/n-pool-5.webp" alt="Мама поднимает малыша на фоне стены с надписью «Ноль Плюс»" loading="lazy"><span class="cap">На фоне нашего логотипа</span></button>
         </div>
         <div class="album-grid" id="g-hall" role="tabpanel" aria-labelledby="tab-hall" hidden>
-          <button class="ph" type="button"><img src="photos/hall-1.webp" alt="Девочка в бассейне на фоне стены с логотипом «Ноль Плюс» и рыбками" loading="lazy"><span class="cap">Стены с подводным миром</span></button>
-          <button class="ph" type="button"><img src="photos/hall-2.webp" alt="Чаша бассейна с голубой мозаикой и нарисованным скатом" loading="lazy"><span class="cap">Чаша бассейна</span></button>
-          <button class="ph" type="button"><img src="photos/hall-3.webp" alt="Нарисованная весёлая акула на стене бассейна" loading="lazy"><span class="cap">Акула встречает гостей</span></button>
+          <button class="ph" type="button"><img src="photos/n-hall-1.webp" alt="Стена бассейна с русалочкой и надписью «Ноль Плюс»" loading="lazy"><span class="cap">Русалочка и логотип</span></button>
+          <button class="ph" type="button"><img src="photos/n-hall-2.webp" alt="Чаша бассейна с лесенкой и нарисованным подводным миром" loading="lazy"><span class="cap">Чаша бассейна</span></button>
+          <button class="ph" type="button"><img src="photos/n-hall-3.webp" alt="Нарисованные акула, рыбки и надпись «Ноль Плюс» на стене" loading="lazy"><span class="cap">Подводный мир на стенах</span></button>
+          <button class="ph" type="button"><img src="photos/n-hall-4.webp" alt="Вход в детский бассейн «Ноль Плюс» с радугой на фасаде, Ломоносова, 38" loading="lazy"><span class="cap">Вход с радугой</span></button>
+          <button class="ph" type="button"><img src="photos/n-hall-5.webp" alt="Аквариум с рыбками в холле бассейна" loading="lazy"><span class="cap">Аквариум в холле</span></button>
         </div>
         <div class="album-grid" id="g-sauna" role="tabpanel" aria-labelledby="tab-sauna" hidden>
-          <button class="ph" type="button"><img src="photos/sauna-2.webp" alt="Девочка в купальнике отдыхает в деревянной сауне" loading="lazy"><span class="cap">Отдыхаем после плавания</span></button>
-          <button class="ph" type="button"><img src="photos/sauna-1.webp" alt="Малыш в жёлтом полотенце в сауне" loading="lazy"><span class="cap">Тёплая сауна</span></button>
-          <button class="ph" type="button"><img src="photos/sauna-3.webp" alt="Малышка сидит на полке сауны в полотенце" loading="lazy"><span class="cap">Греемся в полотенце</span></button>
+          <button class="ph" type="button"><img src="photos/n-sauna-1.webp" alt="Малыш лежит в сауне под оранжевым полотенцем" loading="lazy"><span class="cap">Отдыхаем после плавания</span></button>
+          <button class="ph" type="button"><img src="photos/n-sauna-2.webp" alt="Малыш в жёлтом полотенце сидит в деревянной сауне" loading="lazy"><span class="cap">Тёплая сауна</span></button>
+          <button class="ph" type="button"><img src="photos/n-sauna-3.webp" alt="Девочка в розовом полотенце листает книжку в сауне" loading="lazy"><span class="cap">С книжкой в сауне</span></button>
+          <button class="ph" type="button"><img src="photos/n-sauna-4.webp" alt="Девочка в шапочке и очках греется в сауне в полотенце" loading="lazy"><span class="cap">Греемся в полотенце</span></button>
+          <button class="ph" type="button"><img src="photos/n-sauna-5.webp" alt="Деревянная сауна с корзинкой игрушек и ограждением у печки" loading="lazy"><span class="cap">Сауна с игрушками</span></button>
         </div>
         <div class="album-grid" id="g-play" role="tabpanel" aria-labelledby="tab-play" hidden>
-          <button class="ph" type="button"><img src="photos/play-1.webp" alt="Малыш ползёт по ковру среди пирамидок и игрушек" loading="lazy"><span class="cap">Пирамидки и игрушки</span></button>
-          <button class="ph" type="button"><img src="photos/play-2.webp" alt="Мама с малышкой на руках в игровой комнате" loading="lazy"><span class="cap">Мама с малышкой</span></button>
-          <button class="ph" type="button"><img src="photos/play-3.webp" alt="Малышка обнимает разноцветный мяч" loading="lazy"><span class="cap">Любимый мяч</span></button>
+          <button class="ph" type="button"><img src="photos/n-play-1.webp" alt="Малышка лежит на коврике среди развивающих игрушек" loading="lazy"><span class="cap">Игрушки для самых маленьких</span></button>
+          <button class="ph" type="button"><img src="photos/n-play-2.webp" alt="Девочка выглядывает из игрового лабиринта с лентами" loading="lazy"><span class="cap">Лабиринт с лентами</span></button>
+          <button class="ph" type="button"><img src="photos/n-play-3.webp" alt="Малыш играет рядом с большим мячом" loading="lazy"><span class="cap">Большой мяч</span></button>
+          <button class="ph" type="button"><img src="photos/n-play-4.webp" alt="Мама и бабушка целуют малышку в игровой комнате" loading="lazy"><span class="cap">Всей семьёй</span></button>
+          <button class="ph" type="button"><img src="photos/n-play-5.webp" alt="Малыш с пирамидкой и плюшевой игрушкой" loading="lazy"><span class="cap">Пирамидки и игрушки</span></button>
         </div>
       </div>
     </div>
